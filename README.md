@@ -11,9 +11,10 @@ skill follows are in [docs/tickets/CONVENTIONS.md](docs/tickets/CONVENTIONS.md).
 
 ## The suite
 
-Every design answer from the panel and the four tools opens with the same six
-labelled lines (Verdict, Lens, Pillar check, Evidence, Test, Confidence),
-defined once in `ask-sid/SKILL.md` under Answer forms. `game-bible` is the
+Every panel answer leads with the six-line short form (Verdict, Lens, Pillar
+check, Evidence, Test, Confidence), after a conflict notice when there is one;
+the four tools lead with it too, then add their deliverable. The form and the
+output order are defined once in `ask-sid/SKILL.md` under Answer forms. `game-bible` is the
 exception: its define interview produces a bible, not six lines, and its
 record mode writes the entry the user asked for. Every skill reads the game
 bible first, at `docs/game-bible.md` under the project root, and writes to it
@@ -25,8 +26,10 @@ and the tools only after the user says yes to an entry shown in full,
 from the principles catalog. The panelist names the lens, the cited catalog
 entry is the argument, nobody is impersonated. It is the one model-invoked
 skill: Claude loads it on its own when the conversation turns to the design of
-a game the user is making (an idea, a mechanic, a worry, a tester's complaint),
-not for engine or shader questions. It answers in the short form, gives the
+a game the user is making, or the user says they want to add, cut, or change
+something in it (an idea, a mechanic, a feature request, a worry, a tester's
+complaint), before any brainstorming or building of a feature; not for engine
+or shader questions. It answers in the short form, gives the
 full form on request or "settle this", and hands off to a tool by naming the
 slash command to type. It owns `PRINCIPLES.md` (twenty entries, `P01` to
 `P20`, with an index table), `DEVELOPERS.md`, `SOURCES.md`, and `GENRES.md`
@@ -40,6 +43,8 @@ star, hook check, pillars, non-goals and constraints, target player, core
 loop, riskiest assumption) and writes `docs/game-bible.md`. With an argument
 (`/game-bible we cut the shield`) it runs in record mode: one entry, written
 first with `TBD: ask` in the slots the user did not supply, then one question.
+Write-first applies only when no conflict is found; a conflict with a pillar,
+a non-goal, or a Decided entry is asked about first and the write waits.
 It owns `RECORDING.md` (the write contract: entry types, states, conflict
 check), `TEMPLATE.md` (the bible skeleton), and `INTERVIEW.md` (the define
 brief).
@@ -69,7 +74,8 @@ observation step names its no-logging substitute. It owns only its
 
 **game-release** ships a simple game well. Typed as `/game-release`, it runs
 in scope mode for a wishlist, a deadline, or "am I ready" (phase and gate,
-feature table, cuts, missing table stakes, calendar, scope reality) and in
+feature table, cuts, missing table stakes, calendar, scope reality; a single
+feature gets the short form, one table row, and the late-addition rule) and in
 launch mode for pricing, channels, demo, retention, or post-launch questions
 (eight parts, from promise to post-launch loop). It owns `LAUNCH.md`, which
 holds launch mode's parts.
@@ -120,7 +126,7 @@ The parts a reader of the skills meets first:
   `ask-sid` skill directory, `RECORDING.md` and `TEMPLATE.md` in the
   `game-bible` skill directory. The bible is
   `<git top level, else cwd>/docs/game-bible.md`, with `GAME-BIBLE.md` at the
-  root as the first fallback.
+  root as the first fallback; two matches means ask which one and stop.
 - Catalog ids `P01` to `P20` are the twenty entries of `PRINCIPLES.md` in
   order. A skill cites one by id and short name (`P02 Interesting decisions`).
 - Fixed headings other files cite: `ask-sid/SKILL.md` has `## Answer forms`
