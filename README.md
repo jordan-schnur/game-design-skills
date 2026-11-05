@@ -119,9 +119,10 @@ The parts a reader of the skills meets first:
   and a `description` starting "Use when", under 1024 characters in total.
   Only `ask-sid` is model-invoked; every other skill carries
   `disable-model-invocation: true` and is typed as a slash command.
-- Skills do not call each other through the Skill tool. They hand off with
-  "type `/game-...`" and one reason. The one Skill-tool call in the suite is
-  `game-bible` calling `grilling`.
+- Skills do not call each other through the Skill tool. They hand off with a
+  last line that names the next step in the world, what you will have when it
+  is done, and the `/game-...` command to type then. The one Skill-tool call in
+  the suite is `game-bible` calling `grilling`.
 - Shared files are read by path: `GENRES.md` and `PRINCIPLES.md` in the
   `ask-sid` skill directory, `RECORDING.md` and `TEMPLATE.md` in the
   `game-bible` skill directory. The bible is
