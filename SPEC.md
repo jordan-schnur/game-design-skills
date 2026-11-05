@@ -180,7 +180,7 @@ All user-invoked; read the bible by path; read their genre section; carry their 
 
 ## 7. External review and adjudication
 
-Two Codex (`gpt-6-astra`) passes; reports in the session scratchpad as `codex-review.md` and `codex-review-v2.md`. v1 verdict: rework. v2 verdict: approve with changes. Every change requested in the second pass, and what v3 does:
+Two Codex (`gpt-6-astra`) passes; reports in `docs/reviews/codex-review-v1.md` and `docs/reviews/codex-review-v2.md`. v1 verdict: rework. v2 verdict: approve with changes. Every change requested in the second pass, and what v3 does:
 
 | Requested | v3 |
 |---|---|
