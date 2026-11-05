@@ -12,7 +12,7 @@ skill follows are in [docs/tickets/CONVENTIONS.md](docs/tickets/CONVENTIONS.md).
 ## The suite
 
 Every panel answer leads with the six-line short form (Verdict, Lens, Pillar
-check, Evidence, Test, Confidence), after a conflict notice when there is one;
+check, Evidence, Test, Confidence), after a conflict notice or save report when there is one;
 the four tools lead with it too, then add their deliverable. The form and the
 output order are defined once in `ask-sid/SKILL.md` under Answer forms. `game-bible` is the
 exception: its define interview produces a bible, not six lines, and its

@@ -79,7 +79,7 @@ After the user's text: derive every remaining slot from it, show each derivation
 
 Look in: the bible location and fallbacks from `RECORDING.md`, then `docs/`, the README, and any pitch or design doc. What a file answers becomes a `Proposed` draft, confirmed in one line that names the file. A stale doc (it describes features the code no longer has) is still read; the confirmation names the gap.
 
-For a game that already exists, the first question is the intended experience: what the player was meant to feel, asked before any description of what is built.
+For a game that already exists, the first slot question is the intended experience: what the player was meant to feel, asked before any description of what is built.
 
 ## Inline round format
 

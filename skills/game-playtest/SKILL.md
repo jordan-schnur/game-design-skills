@@ -24,7 +24,7 @@ In the output order of `ask-sid/SKILL.md`, section Answer forms (conflict notice
 4. **Causes.** Each with the observation that confirms it, made without logging. For difficulty: goal unclear, execution too demanding, an untaught demand (P12), a retry loop too long, a bug or skip.
 5. **Hypothesis.** One falsifiable sentence before any change: "a practice room before the hazard brings level 3 quits from two of five to zero."
 6. **Experiment.** One variable. One to five testers means within-subjects, the same testers on the changed build, learning effect named (a second run is easier regardless). With four or five, half play the changed build first, separating order from change.
-7. **Questions.** Asked after play, before the feature is named: the table below's "where did you stop", "what did you do because you felt you had to", "what would you cut".
+7. **Questions.** Asked after play, before the feature is named: "where did you stop" (the table below), "what did you do because you felt you had to", "what would you cut".
 8. **Decision rule.** The count that adopts the change, the count that discards it, the result that means look again. Counts, not percentages; a cause read from counts alone is a guess, said so in Confidence.
 9. **Record.** A Playtest entry per `RECORDING.md` in the `game-bible` skill directory, shown in full, its heading ending `: <what was tested>` per `TEMPLATE.md`. The experiment as a `Planned` Experiment entry; each written on its own yes.
 
