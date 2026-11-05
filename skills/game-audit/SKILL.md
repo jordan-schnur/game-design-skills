@@ -10,7 +10,7 @@ Checks an existing bible against the panel and imports playtest, interview, and 
 
 ## Reads
 
-1. **The bible.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which and stop. None: say so, name `/game-bible`, stop. The core block, then entry headings, state lines, and `Tested:` lines in the bible and its `docs/game-bible/*.md` archives, never a whole archive. A bible without state lines: `RECORDING.md`, section Bibles without states.
+1. **The bible.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which and stop. None: say so, name `/game-bible`, stop. The core block, then entry headings, state lines, and `Tested:` lines in the bible and its `docs/game-bible/*.md` archives, never a whole archive; every entry whose heading matches a document session or pillar is read in full before judging. A bible without state lines: `RECORDING.md`, section Bibles without states.
 2. **The documents.** Those named, else every file under `docs/` whose heading or file name says playtest, test, session, or interview. Headings first, then only sections on a session, observation, finding, change made, or hypothesis; never transcripts or implementation detail. The reply names the files and sections read.
 3. **The genre section** of `GENRES.md` in the `ask-sid` skill directory (the sibling of this skill's directory), and `PRINCIPLES.md` there, index first. Anchors: P07 Every feature serves a pillar, P16 Measure behavior, P20 The bible is the memory.
 
@@ -33,7 +33,7 @@ Numbered, each shown in full per `RECORDING.md`, section Entry types, and `TEMPL
 - **One Done experiment per idea the documents say was built and played.** Hypothesis as stated; `State: Done (<date>, build <id>, <n> testers)`; Variable changed; Gate or metric; Observed; Verdict as the document states it (kept, dropped, inconclusive), else `TBD: ask`.
 - **One Open question per risk the documents raise that the bible lacks.** `State: Open (by /game-audit, <date>)`, Threatens, Settles when, `Settled by: pending`.
 
-Every entry ends `Source: <file>, section <heading>` and names `/game-audit` in its provenance mark. One already in the bible is offered as an update (Rules, repeat saves).
+Every entry ends `Source: <file>, section <heading>` (RECORDING.md, Rules). Identity is the session, not the feature: one session described in two documents is one entry citing both; two sessions on one feature are two entries. A session already in the bible is offered as an update of that entry. A tester count or relation read from wording such as "the designer's report" is recorded with that wording quoted.
 
 **The yes.** Scoped: "yes to 1, 3" or "yes to all playtest entries" writes those; a bare "yes" with several offered gets "which numbers, or all?". The write runs the conflict check, goes newest first, and is reported at the top: what, where, which state.
 
