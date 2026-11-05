@@ -1,25 +1,56 @@
 ---
 name: game-release
-description: Use when planning how to launch, price, market, demo, or position a game, deciding on retention or monetization mechanics, or handling post-launch feedback and updates: "how do I launch this", "what should I charge", "should I add a battle pass / daily rewards", "no wishlists yet", "reviews say X, what now".
+description: Use when the user types /game-release with a feature wishlist, a deadline, or "am I ready", or to plan launch, pricing, demo, marketing, retention, monetization, or post-launch updates.
+disable-model-invocation: true
 ---
 
 # Game Release
 
-Connect the design to its audience without betraying it. Market success tracks a distinct, well-communicated concept and execution quality, not gimmicks. Call the Skill tool with "game-design-principles" and read the bible: the vision, pillars, and target player are the marketing brief.
+Ships a simple game well and connects it to its audience without betraying the design. Two modes, picked from the request:
 
-## Output
+- **Scope mode**: the request carries a wishlist, a deadline, "what next", or "am I ready".
+- **Launch mode**: the request carries launch, price, channels, a retention or monetization mechanic (battle pass, daily rewards, streaks), or post-launch reviews.
+- Both: scope mode, with launch mode named as the next step.
 
-1. **Promise.** The hook from the bible, as the sentence the store page, trailer, and demo must all deliver. If the hook is unclear, the launch problem is a concept problem; say so and call the Skill tool with "game-concept".
-2. **Audience and where they are.** The target player from the bible, the games they already play, and the specific channels, communities, showcases, and creators that serve that niche. Named, not "social media."
-3. **Analog launches.** Two or three comparable games: how they priced, whether they ran a demo, how long their page was up before release, what their launch looked like. Mark what is known versus pattern-matched.
-4. **Demo and trailer.** What the first ten minutes must show to deliver the promise. The demo exists to let the core fun sell itself; it is not a feature tour.
-5. **Pricing.** A range anchored to analogs and length, with the reasoning and the uncertainty.
-6. **Timeline.** Page up, demo, festival or showcase windows, release window, launch discount. State the trade-off between shipping now and building wishlists.
-7. **Retention and monetization check.** Any proposed engagement or monetization mechanic is judged against the pillars and the target player. Mechanics borrowed from a different business model (daily logins, battle passes, streaks in a finite premium game) fail the pillar check by default; say so with the reason and name what the underlying worry (length, replay, reviews) actually calls for.
-8. **Post-launch loop.** What to collect (reviews mined for recurring complaints, refund timing, completion rates, where players stop), how to triage it through the Skill tool with "game-playtest", and what the first patch likely contains.
-9. **Confidence and record.** Per recommendation. Decisions to the bible through the Skill tool with "game-bible".
+## Reads
 
-## Checks
+1. **The bible's core block.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which. None: say so, name `/game-bible`, and proceed on pillars inferred from the request, each labelled inferred.
+2. **The genre section** in `GENRES.md` in the `ask-sid` skill directory (the sibling of this skill's directory).
+3. **Anchors** P18 Finish a simple game well, P07 Every feature serves a pillar, P19 A distinct concept beats a gimmick; full entries in `PRINCIPLES.md` in the `ask-sid` skill directory.
+4. **Launch mode only:** `LAUNCH.md` next to this file, which holds that mode's parts.
 
-- Every marketing artifact in the plan can be traced to a pillar. A trailer showing a side feature because it looks good is a mismatch.
-- No recommendation optimizes engagement at the expense of the player's enjoyment. Goodwill is the long-term asset.
+## Deliverable
+
+Either mode opens with the short form, six labelled lines in order (Verdict, Lens, Pillar check, Evidence, Test, Confidence), defined in `ask-sid/SKILL.md`, section Answer forms. The mode's parts follow, then Record and Hand-offs.
+
+Every fact about another game (its price, hours, demo, launch) carries one of three marks: known (the user said it or it was read this session), from memory (recalled, unverified), or "none I can verify" with an offer to search.
+
+### Scope mode
+
+1. **Phase and gate.** The phase (concept, core prototype, expansion, systems, polish, launch prep, post-launch), the gate question for leaving it, and passed or not, with the bible entries that show it by heading and date, or "nothing recorded".
+2. **Feature table.** One row per feature: pillar served (or none), decision it creates for the player, cost (small, medium, or large, in weeks for this team), table stakes (the audience punishes its absence), trailer visible, verdict (build, build small, defer, cut). The verdict column follows three rules: no pillar and no decision is cut unless table stakes; of two systems competing for the same hours, the one closer to the hook wins; a count ("40 recipes") becomes the smallest number that gates progression.
+3. **Cuts with reasons.** Each cut names the pillar it fails or the cost it cannot carry, and whether post-launch is its home.
+4. **Missing table stakes.** Work absent from the wishlist (save robustness, the first twenty minutes, settings, controller support where the audience expects it, store page and demo), added to the table. P18's Counterexamples line is the one that applies.
+5. **Calendar.** Build order, the polish tail (the final third carries no new features), and what slips first. A late addition needs a pillar, a small cost, and a reason it cannot wait.
+6. **Scope reality.** The stated hours against a comparable shipped game's scope, marked estimate, and the smallest version that could ship.
+
+Scope mode's questions are about hours, what already exists, and how the core feels; prices and marketing wait for launch mode.
+
+### Launch mode
+
+The eight parts in `LAUNCH.md`: promise, audience and channels, analog launches, demo and trailer, pricing, timeline, retention and monetization, post-launch loop.
+
+## Record
+
+The reply ends with the `Proposed` entries it offers, shaped by `RECORDING.md` in the `game-bible` skill directory: a Decision per cut, deferral, price, or launch window (`<Feature>: remove`, `defer`, or `add`), with `TBD: ask` in slots the user did not supply. Each is shown in full; a yes writes that one entry.
+
+## Hand-offs
+
+One line each, after the short form: type `/game-mechanic-critique` for the verdict on a single feature ("add X before shipping"; this skill keeps the calendar); `/game-prototype` when the gate is unpassed and a build comes next; `/game-playtest` with post-launch reports; `/game-bible` when there is no bible or the north star is unclear.
+
+## Never
+
+- Invents a launch fact, price, date, or analog.
+- Asks for prices or marketing in scope mode.
+- Reports that something is fun; the test is what shows it.
+- Writes to the bible unasked, or sets `Decided`.
