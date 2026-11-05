@@ -1,9 +1,10 @@
 # game-design-skills
 
-Claude Code skills that act as a game design panel for a solo developer. One
-skill speaks up on design ideas (`ask-sid`), one keeps the game bible
-(`game-bible`), and four tools are typed when a question needs a process
-(`game-prototype`, `game-mechanic-critique`, `game-playtest`, `game-release`).
+Claude Code skills that act as a game design panel for a solo developer: seven
+in all. One skill speaks up on design ideas (`ask-sid`), one keeps the game
+bible (`game-bible`), and five tools are typed when a question needs a process
+(`game-prototype`, `game-mechanic-critique`, `game-playtest`, `game-release`,
+`game-audit`).
 
 Built from a research report on what makes games fun (GDC talks, postmortems,
 developer interviews). The design is in [SPEC.md](SPEC.md); the rules every
@@ -13,7 +14,7 @@ skill follows are in [docs/tickets/CONVENTIONS.md](docs/tickets/CONVENTIONS.md).
 
 Every panel answer leads with the six-line short form (Verdict, Lens, Pillar
 check, Evidence, Test, Confidence), after a conflict notice or save report when there is one;
-the four tools lead with it too, then add their deliverable. The form and the
+the five tools lead with it too, then add their deliverable. The form and the
 output order are defined once in `ask-sid/SKILL.md` under Answer forms. `game-bible` is the
 exception: its define interview produces a bible, not six lines, and its
 record mode writes the entry the user asked for. Every skill reads the game
@@ -80,6 +81,23 @@ launch mode for pricing, channels, demo, retention, or post-launch questions
 (eight parts, from promise to post-launch loop). It owns `LAUNCH.md`, which
 holds launch mode's parts.
 
+**game-audit** checks an existing bible against the panel and brings existing
+playtest, interview, and design documents into it. Typed as
+`/game-audit [documents]` (no argument means the bible plus every document
+under `docs/` whose heading or file name says playtest, test, session, or
+interview), it reads each document headings first and only the sections that
+describe a session, observation, finding, change, or hypothesis, then
+produces a bible check table (each core slot: present, shape, panel note with
+panelist and catalog id), a verdict per pillar (keep, sharpen, split, or drop,
+with the feature it fails to rule out), a tests table, and evidence versus
+pillars, with contradictions as conflict notices at the top. It offers one
+Playtest entry per session, one Done experiment per idea the documents say was
+built and played, and one Open question per risk the bible lacks, numbered so
+a yes can be scoped ("yes to 1, 3", "yes to all playtest entries"); every
+entry names its source file and section, carries `TBD: ask` where the document
+is silent, and nothing is written before a yes or marked Decided. It owns only
+its `SKILL.md`.
+
 ## Install
 
 ```bash
@@ -105,6 +123,7 @@ skills/game-prototype/          SKILL.md
 skills/game-mechanic-critique/  SKILL.md
 skills/game-playtest/           SKILL.md
 skills/game-release/            SKILL.md, LAUNCH.md
+skills/game-audit/              SKILL.md
 docs/tickets/CONVENTIONS.md     fixed headings, ids, paths, writing and process rules every ticket follows
 docs/baseline/                  baseline scenarios and results from the v1 build, the failures each skill was written against
 docs/reviews/                   external (Codex) review reports of the spec
