@@ -1,6 +1,6 @@
 # Game Design Skill Suite: Spec v3 for Review
 
-Status: draft for your approval. v1 described ten skills built directly from the source document (committed locally in `~/.claude/skills` as `d23ea35`, not pushed, kept as a draft). v2 redesigned around your answers and a Codex review. v3 folds in your second round of answers and Codex's second review ("approve with changes"). Nothing is applied to the files until you approve this document.
+Status: draft for your approval. v1 described ten skills built directly from the source document; those draft files now live in this repo under `skills/` and are installed into `~/.claude/skills` as symlinks by `make install`. v2 redesigned around your answers and a Codex review. v3 folds in your second round of answers and Codex's second review ("approve with changes"). Nothing is applied to the files until you approve this document.
 
 Source: `~/Downloads/game-dev.md`, a research report on what makes games fun (GDC talks, postmortems, developer interviews), deliverables A to I.
 
@@ -17,7 +17,7 @@ A solo developer working on a game in Claude Code gets:
 | Topic | Decision |
 |---|---|
 | v1 problems | Files before spec; too many skills |
-| Draft commit | Keep `d23ea35`; revise in place after approval |
+| Draft files | Keep as the draft in `skills/`; revise in place after approval |
 | Skill count | Six: `ask-sid`, `game-bible`, `game-prototype`, `game-mechanic-critique`, `game-playtest`, `game-release` |
 | Reply length | Short by default; full on request or for "settle this" asks |
 | Persona | Composite panel; Sid Meier chairs; router keeps the name `ask-sid` |
@@ -213,7 +213,7 @@ Order matters: contracts first, consumers after, deletions last.
 9. **Sweep.** Every "Call the Skill tool with game-..." becomes a path read or a "type `/...`" line. Every reference to deleted skills removed. Set `disable-model-invocation: true` on the four tools. Delete `game-design-principles/`.
 10. **README.** Rewrite the suite section for six skills.
 11. **Existing bibles.** Any bible written by the v1 draft (the test fixture only, as far as I know) is read as-is; decisions without a state line are treated as `Decided` only if you confirm, else `Proposed`.
-12. **Tests** (section 9), fixes, commit on top of `d23ea35`.
+12. **Tests** (section 9), fixes, commit.
 
 ## 9. Tests before commit
 
@@ -235,4 +235,4 @@ Pass criteria written per scenario before running. Each run through the real Ski
 1. **"Own skin" for the interview.** I read it as: grilling supplies the round and frontier engine (and your grill-pad pane), `game-bible` supplies slot-titled questions, the north-star framing, the escalation step, and a bible as output instead of a glossary. If you meant a different pane or visual treatment, say so.
 2. **Multiple games or existing docs.** One repo, one bible is assumed; an existing design doc is read first and never rewritten. Confirm.
 3. **What would justify this over plain Claude.** The v1 baselines were already competent. v3's claim: a north star that exists and is kept, feedback grounded in it, honest unknowns, and short answers. If your bar is different, the last test in section 9 should measure that instead.
-4. **Approve to proceed?** On approval I run the change plan, the tests, and commit on top of the draft; no push.
+4. **Approve to proceed?** On approval I run the change plan, the tests, and commit in this repo; no push.
