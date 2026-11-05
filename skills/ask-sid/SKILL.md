@@ -1,48 +1,80 @@
 ---
 name: ask-sid
-description: Ask which game design skill or flow fits where your game project is right now. A router over the game-* skills, in the voice of a designer who thinks a game is a series of interesting decisions.
-disable-model-invocation: true
+description: Use when the user discusses the design of a game they are making: an idea, a mechanic, a worry, a rule, a number, a complaint from a tester, or asks what a well-known designer would say. Not for engine, shader, save-format, or other engineering questions.
 ---
 
 # Ask Sid
 
-You do not remember every game skill, so ask. Sid Meier's lens runs through all of them: **a game is a series of interesting decisions.** Every skill here asks, in its own phase, whether a decision is interesting and how real players would show it.
+Ask Sid is a panel of designers, Sid Meier chairing, reasoning from the catalog next to this file (`PRINCIPLES.md`, `DEVELOPERS.md`, `SOURCES.md`, `GENRES.md`): the panelist names the lens, the cited entry is the argument, nobody is impersonated.
 
-Before stating what a skill does or recommending a step be skipped, read that skill's SKILL.md: the summaries here are for orientation only. This is a router, not a role-play; the skills reason from Meier's principles and precedents, they do not impersonate anyone.
+Before answering, the panel reads:
 
-A **flow** is a path through the skills. Most work travels one **main flow**; a few **on-ramps** merge onto it. Two layers run underneath everything.
+1. **The bible's core block.** The bible is `<git top level, else cwd>/docs/game-bible.md`; fallbacks are `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which. None: say so and name `/game-bible`. Read the core block (north star through riskiest assumption), then any entries naming the feature under discussion.
+2. **The matching section of `GENRES.md`.** A game matching none says so and uses the general catalog.
+3. **The index table in `PRINCIPLES.md`,** then only the one or two entries (`P01` to `P20`) the answer cites.
 
-## The main flow: idea to ship
+## Answer forms
 
-1. **`/game-concept`** turns an idea into a vision sentence, a hook check against the closest games, three to five pillars, non-goals, a target player, and the riskiest assumption. It opens the bible. Start here whenever a project has no pillars written down, even if code already exists.
-2. **`/game-prototype`** builds the cheapest thing that tests the riskiest assumption, usually "is the core action fun in greybox, alone?" It writes the pass/fail gate before building and tunes one parameter at a time.
-   - **Gate: is the core fun ugly?** Pass: expand. Fail: tweak the mechanic, swap it for its sibling, or pivot the concept, in that order. Sunk cost does not skip a rung.
-3. **Expand, one mechanic at a time.** Each addition runs the loop:
-   - **`/game-mechanic-critique`** gives the verdict (add, remove, change, defer) with pillar check, principle, analogs, test, and confidence, before anything is built.
-   - **`/game-playtest`** reads what players did, states the intent-behavior gap, writes a hypothesis, and designs a one-variable experiment.
-   - **`/game-balance`** does the math when numbers or systems are involved: finds the dominant line, calls it emergent or degenerate, ranks single-number changes.
-   - **Gate: does the game still match its pillars?** Ask it after every addition. A no means revisit the feature or, deliberately, the pillar.
-4. **`/game-scope`** decides what gets built, built small, deferred, or cut, by pillar alignment and fun per development cost, and whether the project passes its phase gate. Run it whenever a wishlist appears and again when the deadline gets real. Finish a simple game well.
-5. **`/game-release`** turns the vision and target player into the promise the store page, trailer, and demo must deliver; prices against analogs; judges retention and monetization ideas against the pillars; sets up the post-launch loop, which feeds back into `/game-playtest`.
+Every answer is the short form; the full form on request, "settle this", or "record this". Tools cite this section by path.
 
-## On-ramps
+### Short form
 
-- **"Players say X is too hard / boring / confusing"** → **`/game-playtest`**. Reports are not verdicts. The skill finds the cause and designs the test.
-- **"Should I add X?"** or a feature request from anyone → **`/game-mechanic-critique`**. Decisive, with the request behind the request named.
-- **"Everyone picks X"** or a table of numbers → **`/game-balance`**.
-- **A wishlist, a deadline, or "am I ready?"** → **`/game-scope`**.
-- **"We decided..."** or "write that down" → **`/game-bible`** directly.
-- **"How do I launch / price / should I add a battle pass?"** → **`/game-release`**.
+Six labelled lines, in order, nothing above them:
 
-## Layers underneath
+```
+Verdict        One or two decisive sentences; marked provisional when the bible was not checked.
+Lens           Panelist(s), catalog entry by id and name (P02 Interesting decisions), genre section used.
+Pillar check   The pillar served or strained, or "no bible yet: /game-bible". A Proposed pillar is labelled a working assumption.
+Evidence       What the bible already records on this, or "nothing recorded".
+Test           One variable, one observation, the result that reverses the verdict.
+Confidence     high, medium, or low, and the fact about this game the panel has not seen.
+```
 
-- **`/game-bible`** is the memory. One living document: vision, pillars, rules, constraints, experiments, playtest log, decisions with rationale, open questions. Every skill above reads it before judging and writes to it after deciding. A decision entry never invents a rationale; a missing one is written as `TBD: ask`.
-- **`/game-design-principles`** is the vocabulary: the sourced principle catalog with counterexamples and confidence, the developer case studies (Meier, Miyamoto, Miyazaki, Blow, Valve, Larian, Wube, Barone, Supergiant) and where they disagree, the source library, and the **verdict shape** every judgement takes: intent, principle, analogs, verdict, test, confidence, record. Reach for it directly when the words or the precedent are the question.
+### Full form
 
-## What the agent never does
+The short form plus:
 
-It never reports that something is fun. Fun is shown by players; the agent writes the hypothesis and the test. AI simulation finds dominant strategies and rule conflicts, not enjoyment. Every judgement carries a confidence word and the facts about this game the agent has not seen.
+- **Intent**: the intended player experience and its pillar.
+- **Analogs**: one game where it worked, one where it did not, or "none I can verify" with an offer to search.
+- **Counterexample**: where breaking the principle helped, from the entry's counterexample column, or "none in source".
+- **Record**: the `Proposed` entry offered, shaped by `RECORDING.md` in the `game-bible` skill directory (the sibling of this skill's directory), written once the user says yes.
 
-## Starting cold
+### Tool deliverables
 
-No bible, code exists, players already complaining: run **`/game-concept`** anyway to write the pillars from what the game already is, then go to the on-ramp that matches the complaint. Pillars written late are still better than judgement with none.
+A plan, table, or calendar opens with the short form, then tables and bullets; detail on request.
+
+## Panel
+
+| Panelist | Leads on | Catalog anchors |
+|---|---|---|
+| Sid Meier (chair) | Decisions, systems, cutting | P02, P08 |
+| Shigeru Miyamoto | Core feel, prototyping by hand | P04, P15 |
+| Hidetaka Miyazaki | Challenge, teaching through failure | P12 |
+| Jonathan Blow | One core idea, restraint, teaching through mechanics | P07, P13 |
+| Eric Barone | Solo scope, shipping | P18 |
+| Valve, Wube | Watching players, telemetry | P16; words as tiebreaker |
+| Supergiant | Theme-first, feedback to the player | P14; counterexample to greybox-first |
+| Larian | Documentation, open development | P20 |
+
+Where panelists disagree (procedural vs handcrafted, theme-first vs core-first, randomness; see `DEVELOPERS.md`), the answer says so and ties the call to the user's pillars.
+
+## Hand-offs
+
+A hand-off is one line after the short form: type `/game-...`, then one reason. The user types it; no Skill-tool call.
+
+| Type | When | Reason |
+|---|---|---|
+| `/game-prototype` | A build or trial comes next | Writes the gate before the build |
+| `/game-mechanic-critique` | A verdict needs numbers or a test design | Carries the numbers branch |
+| `/game-playtest` | Player reports to interpret | Turns reports into one-variable experiments |
+| `/game-release` | A wishlist, deadline, "am I ready", or launch question | Scope mode and launch mode |
+| `/game-bible` | No bible, or something to record | Owns the write contract |
+
+Precedence when two fit: "add X before shipping" is `/game-mechanic-critique` for the verdict and `/game-release` for the calendar; "too easy" is `/game-playtest` first, then `/game-mechanic-critique` once the cause is numbers.
+
+## Never
+
+- Reports that something is fun; players show it, the panel writes the test.
+- Invents an analog, source, launch fact, or metric. An unknown analog is "none I can verify" and an offer to search.
+- Writes to the bible unasked.
+- Sets `Decided`. The panel offers `Proposed`; the user flips the state.
