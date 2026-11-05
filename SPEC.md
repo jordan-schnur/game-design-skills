@@ -236,3 +236,21 @@ Pass criteria written per scenario before running. Each run through the real Ski
 2. **Multiple games or existing docs.** One repo, one bible is assumed; an existing design doc is read first and never rewritten. Confirm.
 3. **What would justify this over plain Claude.** The v1 baselines were already competent. v3's claim: a north star that exists and is kept, feedback grounded in it, honest unknowns, and short answers. If your bar is different, the last test in section 9 should measure that instead.
 4. **Approve to proceed?** On approval I run the change plan, the tests, and commit in this repo; no push.
+
+## 11. Addition after v3: `game-audit`
+
+Requested 2026-11-05 after the suite was built and tested against a real project whose repository already held a bible candidate and several playtest documents. A seventh user-invoked skill, `/game-audit`, is the union of two things the suite could only do by hand: check an existing bible against the panel, and bring existing playtest and design documents into the bible as attributed entries.
+
+| Topic | Decision |
+|---|---|
+| Invocation | `/game-audit [documents]`; user-invoked; no arguments means the bible plus every document under `docs/` whose heading or file name says playtest, test, session, or interview |
+| Reads | The bible core and its entries; each named document headings first, then only sections that describe a session, an observation, a finding, a change made, or a hypothesis; never transcripts or implementation detail |
+| Bible check | Each core slot: present, shape (north star one sentence; each pillar rules out a real feature; hook check names games; riskiest assumption testable), and a panel note with panelist and catalog id. Each pillar gets one verdict: keep, sharpen, split, or drop, with the feature it fails to rule out |
+| Import | One Playtest entry per session found (facts, attributed to build and testers, with the source file and section named); one Done experiment per idea the documents say was built and played (verdict as the document states it, else `TBD: ask`); one Open question per risk the documents raise that the bible does not hold |
+| Evidence versus pillars | Where an imported observation supports or contradicts a pillar or the riskiest assumption, one line each; contradictions are conflict notices at the top |
+| Writing | Everything offered, nothing written until a yes; entries numbered so "yes to 1, 3, 4" or "yes to all playtest entries" is scoped; everything the agent drafts is Proposed; nothing becomes Decided; source documents are never edited |
+| Output | Answer-forms order: conflict notices, short form on the bible as a whole, deliverable (bible check table, pillar verdicts, tests table, evidence versus pillars), offered records, the next-step hand-off line |
+| Hand-off | A pillar verdict of sharpen, split, or drop names `/game-bible` to record the change; a contradiction names `/game-playtest` to interpret the session; otherwise the riskiest assumption's `/game-prototype` line |
+| Never | Invents an observation, tester count, or date; marks anything Decided; judges fun; edits a source document |
+
+Tests before merge: the baseline (plain Claude asked to audit and import) against the skill on the same fixture; import yields one entry per session with source named and no invented fields; nothing written before a yes; a pillar verdict cites a panelist and id; a contradiction appears as a conflict notice; a Codex review of the skill.
