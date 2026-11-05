@@ -8,7 +8,7 @@ Interview the user to find a game's north star and the six slots that hang off i
 
 - The first question, asked once at the start: what name goes on decisions. The answer fills every `Decided by` mark; if the user gives none, the mark is `TBD: ask`. The name is never taken from git config, the file system, or the environment.
 - Title each question by its slot and number the questions in a round. One recommendation per question, drafted from what the user has said and what the project files hold. "Yes" accepts that recommendation and nothing else; other open slots keep their own questions in the same round. The grilling pane takes an answer per question, so a yes there is already scoped. In the inline fallback, a bare "yes" while several questions are pending is answered with "yes to which number, or all" before anything is accepted.
-- Facts are the agent's job: read the repository, the pitch, the existing bible. Name comparable shipped games only when they can be named with confidence; otherwise "none I can verify" and an offer to search, taken only on the user's yes. Decisions are the user's.
+- Facts are the agent's job: read the repository, the pitch, the existing bible, bounded to one document and the sections that answer a slot. Name comparable shipped games only when they can be named with confidence; otherwise "none I can verify" and an offer to search, taken only on the user's yes. Decisions are the user's.
 - Prerequisites: north star first; hook check and pillars once a north star draft exists; the remaining slots as what they depend on settles.
 - Escalation: a slot asked in two rounds of short questions and still open gets no more short questions. Say what is being looked for, ask the user to write it in their own words at any length, derive the remaining slots from that text, and confirm each as its own question.
 - The north star cannot be deferred. Escalation on it continues until the user writes it. If the user stops first, the interview ends as paused: the bible is written with `North star: TBD (interview paused: <the question>)` and the reply says the bible is not usable for pillar checks until it is filled.
@@ -77,7 +77,29 @@ After the user's text: derive every remaining slot from it, show each derivation
 
 ## Read-first
 
-Look in: the bible location and fallbacks from `RECORDING.md`, then `docs/`, the README, and any pitch or design doc. What a file answers becomes a `Proposed` draft, confirmed in one line that names the file. A stale doc (it describes features the code no longer has) is still read; the confirmation names the gap.
+Bounded to one document. When the user names a document, read only that one. Otherwise look in: the bible location and fallbacks from `RECORDING.md`, then `docs/`, the README, and any pitch or design doc; when one of them says it supersedes or embeds the others (a handoff document that carries the design doc, the spec, and the playtest summaries), read only it. A project's documents can run to tens of thousands of words together; the interview needs the parts that fill seven slots, nothing more.
+
+Read the document's headings first. Then read only the sections that answer a slot:
+
+| Section about | Slot it feeds |
+|---|---|
+| Core idea, vision, pitch, hook | North star, hook check |
+| Principles, pillars, values | Pillars |
+| Audience, player, who it is for | Target player |
+| Loop, moment-to-moment play, session | Core loop |
+| Scope, constraints, team, schedule, non-goals | Non-goals and constraints |
+| Risks, assumptions, open questions | Riskiest assumption |
+| How it is evaluated, success criteria, gates | Riskiest assumption (the gate) |
+
+Skip appendices, conversation transcripts, implementation details, and test plans; they hold no slot. The confirmation line for each drafted slot names the file and the sections read: "Drafted from `<file>`, sections Vision and Pillars; Appendix and transcript not read."
+
+The document's own marks set the draft's mark (`RECORDING.md`, section Rules, Core slot marks):
+
+- Text the document marks as proposed, a default, a hypothesis, an assumption, or an open question is drafted `Proposed` and confirmed as a question.
+- Text the document marks as the user's decision or correction ("decided", "we ruled", a correction to an earlier draft) is drafted as the user's words, `Decided by <name>` with the file named in the confirmation line; it is still shown for confirmation like every other slot.
+- Text with no mark is `Proposed`.
+
+A stale doc (it describes features the code no longer has) is still read; the confirmation names the gap.
 
 For a game that already exists, the first slot question is the intended experience: what the player was meant to feel, asked before any description of what is built.
 
