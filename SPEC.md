@@ -2,7 +2,7 @@
 
 Status: draft for your approval. v1 described ten skills built directly from the source document; those draft files now live in this repo under `skills/` and are installed into `~/.claude/skills` as symlinks by `make install`. v2 redesigned around your answers and a Codex review. v3 folds in your second round of answers and Codex's second review ("approve with changes"). Nothing is applied to the files until you approve this document.
 
-Source: `~/Downloads/game-dev.md`, a research report on what makes games fun (GDC talks, postmortems, developer interviews), deliverables A to I.
+Source: a research report on what makes games fun (GDC talks, postmortems, developer interviews), deliverables A to I, supplied by the user; not in this repo.
 
 ## 1. What this is for
 
@@ -137,7 +137,7 @@ Runs on the `grilling` primitive (rounds, frontier, recommended answer per quest
 - **Scoped acceptance.** Each question carries one recommendation; "yes" accepts that one only. Several open slots are several questions.
 - **Read first.** If a design doc, pitch, or earlier bible exists, read it and ask only what it does not answer. If the game already exists, ask for the intended experience before describing what is built, so pillars recover intent rather than rationalize what happened to get made.
 - **Escalation, not a cap.** A slot that is still open after two rounds of short questions stops getting short questions. The skill says what it is looking for ("the one sentence that is the north star; the thing every later cut is measured against") and asks you to write it in your own words, at whatever length. It then derives the remaining slots from that text and asks you to confirm each.
-- **Exit.** Done when every slot is filled or you have explicitly deferred it (`TBD`, with the question that would settle it written in), the north star is one sentence, and each pillar has ruled out at least one real feature (from your list, or one the panel proposes and you reject or accept). Deferred slots are legitimate; silent gaps are not.
+- **Exit.** Done when every slot is filled or you have explicitly deferred it (`TBD`, with the question that would settle it written in), the north star is one sentence, and each pillar has ruled out at least one real feature (from your list, or one the panel proposes and you reject or accept). The north star itself cannot be deferred: escalation continues until you write it, and if you stop, the interview ends as paused and the bible says so. A deferred pillar is recorded with `Rules out: TBD: ask` and listed as unresolved. Deferred slots are legitimate; silent gaps are not.
 - **Output.** `docs/game-bible.md` from `TEMPLATE.md`, core filled, everything the agent proposed marked `Proposed`, the riskiest assumption recorded as an `Open` question and a `Planned` experiment, ending with the slash command that tests it.
 
 Why no numeric cap: you want a north star found, not a form filled. Boundedness comes from the fixed frontier, two rounds of short questions per slot before escalation, and an exit tied to the north star. The structural worst case is seven slots, two short rounds each, one escalation, one confirmation round.
@@ -236,3 +236,21 @@ Pass criteria written per scenario before running. Each run through the real Ski
 2. **Multiple games or existing docs.** One repo, one bible is assumed; an existing design doc is read first and never rewritten. Confirm.
 3. **What would justify this over plain Claude.** The v1 baselines were already competent. v3's claim: a north star that exists and is kept, feedback grounded in it, honest unknowns, and short answers. If your bar is different, the last test in section 9 should measure that instead.
 4. **Approve to proceed?** On approval I run the change plan, the tests, and commit in this repo; no push.
+
+## 11. Addition after v3: `game-audit`
+
+Requested 2026-11-05 after the suite was built and tested against a real project whose repository already held a bible candidate and several playtest documents. A seventh user-invoked skill, `/game-audit`, is the union of two things the suite could only do by hand: check an existing bible against the panel, and bring existing playtest and design documents into the bible as attributed entries.
+
+| Topic | Decision |
+|---|---|
+| Invocation | `/game-audit [documents]`; user-invoked; no arguments means the bible plus every document under `docs/` whose heading or file name says playtest, test, session, or interview |
+| Reads | The bible core and its entries; each named document headings first, then only sections that describe a session, an observation, a finding, a change made, or a hypothesis; never transcripts or implementation detail |
+| Bible check | Each core slot: present, shape (north star one sentence; each pillar rules out a real feature; hook check names games; riskiest assumption testable), and a panel note with panelist and catalog id. Each pillar gets one verdict: keep, sharpen, split, or drop, with the feature it fails to rule out |
+| Import | One Playtest entry per session found (facts, attributed to build and testers, with the source file and section named); one Done experiment per idea the documents say was built and played (verdict as the document states it, else `TBD: ask`); one Open question per risk the documents raise that the bible does not hold |
+| Evidence versus pillars | Where an imported observation supports or contradicts a pillar or the riskiest assumption, one line each; contradictions are conflict notices at the top |
+| Writing | Everything offered, nothing written until a yes; entries numbered so "yes to 1, 3, 4" or "yes to all playtest entries" is scoped; every recommendation the agent drafts is Proposed; imported facts enter their type's first state (Playtest, Done, Open) with a `Source:` line; nothing becomes Decided; source documents are never edited |
+| Output | Answer-forms order: conflict notices, short form on the bible as a whole, deliverable (bible check table, pillar verdicts, tests table, evidence versus pillars), offered records, the next-step hand-off line |
+| Hand-off | A pillar verdict of sharpen, split, or drop names `/game-bible` to record the change; a contradiction names `/game-playtest` to interpret the session; otherwise the riskiest assumption's `/game-prototype` line |
+| Never | Invents an observation, tester count, or date; marks anything Decided; judges fun; edits a source document |
+
+Tests before merge: the baseline (plain Claude asked to audit and import) against the skill on the same fixture; import yields one entry per session with source named and no invented fields; nothing written before a yes; a pillar verdict cites a panelist and id; a contradiction appears as a conflict notice; a Codex review of the skill.

@@ -28,13 +28,18 @@ list:
 	@for s in $(SKILLS); do echo "$$s"; done
 
 # Frontmatter must have name and description, stay under 1024 characters,
-# and prose must not use em-dashes (repo convention).
+# parse as YAML (checked with ruby when it is on PATH; a description with
+# an unquoted colon passes the field greps but fails to load), and prose
+# must not use em-dashes (repo convention).
 check:
 	@fail=0; for f in $(SKILLS_SRC); do \
 	  fm=$$(awk 'NR==1 && $$0!="---"{exit 1} NR>1 && $$0=="---"{exit} NR>1{print}' "$$f") || { echo "FAIL $$f: no frontmatter"; fail=1; continue; }; \
 	  echo "$$fm" | grep -q '^name: ' || { echo "FAIL $$f: no name"; fail=1; }; \
 	  echo "$$fm" | grep -q '^description: ' || { echo "FAIL $$f: no description"; fail=1; }; \
 	  [ $$(printf '%s' "$$fm" | wc -c) -le 1024 ] || { echo "FAIL $$f: frontmatter over 1024 chars"; fail=1; }; \
+	  if command -v ruby >/dev/null 2>&1; then \
+	    err=$$(printf '%s\n' "$$fm" | ruby -ryaml -e 'YAML.safe_load(ARGF.read)' 2>&1) || { echo "FAIL $$f: frontmatter is not valid YAML: $$err"; fail=1; }; \
+	  fi; \
 	done; \
 	if grep -rln -- '—' skills README.md SPEC.md 2>/dev/null; then echo "FAIL: em-dash found in files above"; fail=1; fi; \
 	[ $$fail -eq 0 ] && echo "check ok ($(words $(SKILLS)) skills)" || exit 1

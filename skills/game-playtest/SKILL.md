@@ -1,28 +1,53 @@
 ---
 name: game-playtest
-description: Use when interpreting playtest feedback or deciding what to do about it, planning a playtest, or when a user reports "players say X is too hard / boring / confusing", "testers quit at level N", "is this fun?", "how do I test this on my own", or wants to A/B two versions of something.
+description: Use when the user types /game-playtest to interpret what testers did or said, to plan a playtest, or to design a test of one change.
+disable-model-invocation: true
 ---
 
 # Game Playtest
 
-Turn player reports into an evidence-based decision. The agent never judges fun itself: it says what the players showed, what the design intended, and how to find out which change closes the gap. Call the Skill tool with "game-design-principles" and read the bible before interpreting anything.
+Turns what one to five testers did and said into a hypothesis, an experiment, and a bible entry, without telemetry.
 
-## Output
+## Reads
 
-1. **Intent.** What this level, system, or moment was supposed to make the player feel, and the pillar it serves. Pull it from the bible; if the bible is silent, state the assumed intent and flag it.
-2. **What players did.** Behavior first: where they stopped, died, quit, retried, sped up, went idle. Count of testers and their relation to the developer. Then what they said, as a second-class source.
-3. **Gap.** The difference between intent and behavior, in one sentence. "Intended a tense ramp; two of five quit at the same screen" is a gap. "Too hard" is a report.
-4. **Causes.** The candidate causes, each with the observation that would confirm it. For difficulty: unclear goal, hard to execute, spike from untaught demand, retry loop too long, bug or unintended skip.
-5. **Principle and analogs.** The catalog entry that frames the gap (ramp challenge with skill, teach through play, fun per time) and two games that handled this moment.
-6. **Hypothesis.** One sentence, falsifiable, written before any change: "adding a safe practice room before the hazard will cut quits at level 3 to zero of five."
-7. **Experiment.** One variable changed. Two builds when there are enough testers (between-subjects); the same testers on a new build when there are not, noting the learning effect. What to log. What to ask afterward, open and non-leading ("what would you cut?", "what did you do because you felt you had to?"). Never say the feature's name first.
-8. **Decision rule.** What result adopts the change, what discards it, what means "gather more."
-9. **Record.** Playtest log entry and experiment entry for the bible, through the Skill tool with "game-bible".
+1. **The bible.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which and stop. None: say so, name `/game-bible`, run with Intent assumed. Then any entry whose heading or `Tested:` line names the feature (grep those lines in the bible and its `docs/game-bible/*.md` archives, never whole archives); these and the core feed Evidence.
+2. **The genre section** of `GENRES.md` in the `ask-sid` skill directory (the sibling of this skill's directory). Playtest signals says what to count; Testimony weight, how words weigh.
+3. **P16 Measure behavior, not opinions** and **P12 Ramp challenge with skill** in `PRINCIPLES.md`, same directory.
 
-## Solo testing
+## Reply
 
-When the developer is the only tester: record sessions and watch for frustration moments; play as a deliberate novice; speedrun to find exploit loops; log deaths, times, and choice frequencies; change one variable per session. Small samples are directional, not noise. Two of five quitting at the same place is a strong signal.
+In the output order of `ask-sid/SKILL.md`, section Answer forms (conflict notice, save report, short form, deliverable, records, hand-off): the short form (Verdict, Lens, Pillar check, Evidence, Test, Confidence; one sentence each, under 120 words), then the deliverable, in order:
 
-## Where the agent fits
+1. **Intent.** The feeling the moment was built for and its pillar, from the bible or assumed and marked.
+2. **Players did, then players said.** Tester count and relation first; behavior in the genre's signal shape, counted; then their words, quoted. Behavior says where; words say which of obligation, confusion, or enjoyment. Words are the tiebreaker, equal to behavior in the minimalist genre, where a mismatch is the finding.
+3. **Gap.** Intent against behavior in one sentence: "Intended a tense ramp; two of five quit at the same screen." The count locates, the observation explains.
+4. **Causes.** Each with the confirming observation, made without logging. For difficulty: goal unclear, execution too demanding, an untaught demand (P12), a long retry loop, a bug or skip.
+5. **Hypothesis.** One falsifiable sentence before any change: "a practice room before the hazard brings level 3 quits from two of five to zero."
+6. **Experiment.** One variable. One to five testers means within-subjects: the same testers on the changed build, learning effect named (a second run is easier regardless); with four or five, half play the changed build first to separate order from change.
+7. **Questions.** Asked after play, before the feature is named: "where did you stop" (the table below), "what did you do because you felt you had to", "what would you cut".
+8. **Decision rule.** The count that adopts the change, the count that discards it, the result meaning look again. Counts, not percentages; a cause read from counts alone is a guess, marked in Confidence.
+9. **Record.** A Playtest entry per `RECORDING.md` in the `game-bible` skill directory, shown in full, its heading ending `: <what was tested>` per `TEMPLATE.md`. The experiment as a `Planned` Experiment; each on its own yes.
 
-The agent can draft hypotheses, design the experiment, analyze logs for patterns, scan for rule conflicts and exploits, and simulate strategies. It cannot report whether anything was fun. Every judgement of fun in the reply is phrased as a hypothesis with its test.
+Planning before play: parts 2 and 3 carry the latest Playtest entries or `none yet`; the gap is the question the session answers. Full form on "settle this" or "record this".
+
+## Observing without telemetry
+
+| To know | Substitute |
+|---|---|
+| Deaths, quits, stalls | Tester screen-records (a propped phone), or the developer tallies per section |
+| Retries, options chosen | A tally sheet: one row per section or option, one mark per attempt or run |
+| Session length, turn the run was decided | A clock in the recording, or the tester calls the time at each loss |
+| Where they stopped and why | Ask within the hour: "where did you stop, what were you doing" |
+
+## Hand-offs
+
+Last line in the shape of `ask-sid/SKILL.md`, section Answer forms. Default: run the experiment as designed (part 6's build and testers, part 7's questions); with the counts, `/game-playtest <results>`, or `/game-bible <hypothesis> done: <counts>` to mark it Done.
+
+- Cause is numbers (a stat, cost, curve): `/game-mechanic-critique <stats>`.
+- Cause is the core (the verb holds no attention): `/game-prototype`, the gate before the next build.
+
+## Never
+
+- Reports that something is fun; players show it.
+- Invents a count, position, or quote; a report without numbers gets the question that yields them.
+- Writes without a yes to an entry shown in full.

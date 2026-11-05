@@ -1,32 +1,53 @@
 ---
 name: game-mechanic-critique
-description: Use when deciding whether to add, remove, or change a specific game mechanic, feature, enemy, item, or rule: "should I add a double jump", "a playtester wants X", "is this mechanic a good idea", "give me three versions of this mechanic", or when a feature request arrives from anyone and needs a design verdict.
+description: Use when the user types /game-mechanic-critique for a verdict on adding, removing, or changing a mechanic, feature, or rule, on a tester's request, or on whether numbers are balanced.
+disable-model-invocation: true
 ---
 
 # Game Mechanic Critique
 
-Give a decisive verdict on one mechanic, in the verdict shape, with a test attached. Call the Skill tool with "game-design-principles" and read the bible's pillars before judging.
+A verdict on one mechanic, feature, rule, or number set, with the test that reverses it.
 
-## Output
+## Read first
 
-The verdict shape from game-design-principles, with these specifics:
+1. The bible core block, then any entry whose heading or `Tested:` line names the mechanic (grep those lines in the bible and its `docs/game-bible/*.md` archives; never whole archives). Path: `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which and stop. None: say so and name `/game-bible`.
+2. The matching section of `GENRES.md` in the `ask-sid` skill directory (the sibling of this skill's directory). Name it; a game matching none says so and uses the catalog alone.
+3. Anchors in `PRINCIPLES.md`, same directory: P02 Interesting decisions, P07 Every feature serves a pillar, P08 Remove what creates no decision, P11 Emergent vs degenerate.
 
-1. **Intent.** What the mechanic is for, in the player's experience, and the pillar it serves or strains. If no pillar is served, that is usually the verdict.
-2. **Decision it creates.** What choice the player makes because this exists, and what it costs them. A mechanic that creates no decision and costs nothing is a convenience, and conveniences are judged on fun per time, not on depth.
-3. **The request behind the request.** When someone asked for the mechanic, name what they probably experienced that made them ask (missed jumps, felt out of control, expected it from the genre), and whether a smaller change answers that experience.
-4. **Principle.** By name, from the catalog, with its counterexample considered.
-5. **Analogs.** Two or more shipped games that faced this exact choice. What each did and what it cost or bought them.
-6. **Verdict.** Add, remove, change, or defer, in one or two sentences. When the user asked for decisiveness, give it. Half-written code is not an argument for shipping it; stash it on a branch.
-7. **Test.** One variable, one observation, one result that would reverse the verdict. If the mechanic ships, what to log.
-8. **Confidence.** High, medium, or low, with the reason, including what the agent has not seen (the actual levels, the actual feel).
-9. **Record.** A decision entry for the bible, through the Skill tool with "game-bible".
+## The answer
 
-## Variations on request
+In the output order of `ask-sid/SKILL.md`, section Answer forms (conflict notice, save report, short form, deliverable, records, hand-off): the short form (Verdict, Lens, Pillar check, Evidence, Test, Confidence; one sentence each, under 120 words), then two deliverable lines:
 
-When asked for versions of a mechanic ("give me three jumps"), produce each as: parameters or rules, expected feel, the analog it resembles, what it would strain. Then recommend one against the pillars, with confidence.
+```
+Decision created   The choice the player makes because this exists, and its cost. Blank means a convenience, judged on fun per time (P03).
+Request behind it  What the asker likely felt (missed jumps, loss of control, genre expectation) and the smaller change answering it.
+```
 
-## Checks before finishing
+Full form on request, "settle this", or recording; an analog is a named game with what it did and cost, else "none I can verify" and an offer to search.
 
-- The verdict references a pillar by name from the bible, or says the bible has none and recommends writing them.
-- The test names the single variable and the observation.
-- Confidence is stated as a word, not only as a caveat paragraph.
+Asked for a call, Verdict is add, remove, change, or defer, unhedged. Half-written code is no argument; stash it on a branch.
+
+## Numbers branch
+
+When the message supplies stats, costs, damage, pick rates, or a table; after the two lines:
+
+1. **Proposed target.** What balanced means here, from the pillars, in the genre section's Balance target shape, as `Proposed target:` before any arithmetic; the user confirms or edits.
+2. **Table.** Every option in comparable units, with hits-to-kill against the stated enemy hp (whole hits, never pooled: 8 damage into 12 hp is 2 hits) and turns to clear computed turn by turn with every stated side effect (degrade, cooldown, cost); each derived figure checked once against its inputs. User numbers are `Given:`, tester behavior `Observed:` or "none reported", every gap the arithmetic fills an `Assumption:` line under the table.
+3. **Dominance.** Which option wins, by how much, through which lever: raw output, risk avoidance, access timing, economy funnel. Often the cause is broken alternatives, not the favorite.
+4. **Emergent or degenerate** (P11). Emergent: skilled play others see and counter. Degenerate: a decision collapsed into a chore. "Everyone picks X" alone may be habit or discoverability; choice against outcome per run settles it. Without logging, tally pick and result per run and ask testers whether they knew the alternatives.
+5. **Feedback loops.** Each labelled positive or negative, and whether the snowball is intended and bounded.
+6. **Changes, ranked.** Each touches one number or rule, naming its predicted move on the target and the adopting metric (pick rate, win rate by pick). Viable alternatives rank above nerfing the favorite. Double or halve to find the region, then narrow (Meier-attributed, unverified `[outside report]`). One change per build.
+7. **Simulation offer.** Scripted strategies find dominant lines and dead options, not enjoyment; only testers show that.
+
+## Closing lines
+
+Every answer ends, in order, with:
+
+- The `Proposed` Decision entry, shown in full per `RECORDING.md` in the `game-bible` skill directory, `TBD: ask` in unsupplied slots. In the numbers branch, also a `Planned` Experiment for the top change; each yes writes one.
+- The hand-off, last, in the shape of `ask-sid/SKILL.md`, section Answer forms. Add or change: build that one change in one build; when played, `/game-playtest <what they did and said>`. Defer or remove: nothing to build, say yes to record; when decided, `/game-bible <feature> decided`. Numbers: apply the top-ranked change alone; with counts, `/game-playtest <counts>`. Calendar: `/game-release`.
+
+## Never
+
+- Invents an analog, metric, or measurement.
+- Calls something fun or balanced from the table alone; Test names what players must show.
+- Writes to the bible before a yes, or sets `Decided`.
