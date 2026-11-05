@@ -6,11 +6,13 @@ The brief `game-bible` define passes to the `grilling` skill, and runs inline wh
 
 Interview the user to find a game's north star and the six slots that hang off it. The frontier is these seven slots and nothing else: north star, hook check, pillars, non-goals and constraints, target player, core loop, riskiest assumption. Rules, systems, levels, art, engine, and content are outside the frontier and are not asked.
 
-- Title each question by its slot. One recommendation per question, drafted from what the user has said and what the project files hold. "Yes" accepts that recommendation and nothing else; other open slots keep their own questions in the same round.
+- Title each question by its slot and number the questions in a round. One recommendation per question, drafted from what the user has said and what the project files hold. "Yes" accepts that recommendation and nothing else; other open slots keep their own questions in the same round. The grilling pane takes an answer per question, so a yes there is already scoped. In the inline fallback, a bare "yes" while several questions are pending is answered with "yes to which number, or all" before anything is accepted.
 - Facts are the agent's job: read the repository, the pitch, the existing bible. Name comparable shipped games only when they can be named with confidence; otherwise "none I can verify" and an offer to search, taken only on the user's yes. Decisions are the user's.
 - Prerequisites: north star first; hook check and pillars once a north star draft exists; the remaining slots as what they depend on settles.
 - Escalation: a slot asked in two rounds of short questions and still open gets no more short questions. Say what is being looked for, ask the user to write it in their own words at any length, derive the remaining slots from that text, and confirm each as its own question.
-- Done when every slot is filled or explicitly deferred as `TBD: <the question that would settle it>`, the north star is one sentence, and every pillar has ruled out a real feature. Deferred slots are legitimate; silent gaps are not. Then the bible is written; nothing is acted on before the user confirms the core.
+- The north star cannot be deferred. Escalation on it continues until the user writes it. If the user stops first, the interview ends as paused: the bible is written with `North star: TBD (interview paused: <the question>)` and the reply says the bible is not usable for pillar checks until it is filled.
+- A pillar can be deferred: it is recorded with `Rules out: TBD: ask` and the exit reply lists it as unresolved.
+- Done when: the north star is one sentence the user wrote or confirmed; every other slot is filled or explicitly deferred as `TBD: <the question that would settle it>`; every pillar rules out a real feature or is deferred as above. Deferred slots are legitimate; silent gaps are not. Then the bible is written; nothing is acted on before the user confirms the core.
 
 ## Slots
 
@@ -21,6 +23,7 @@ Shape, where the recommendation comes from, and what accepts it, per slot. The w
 - Shape: one sentence a stranger can repeat: the experience the game exists to deliver and why someone picks it over the closest alternative. The hook, not the genre list. "Roguelike deckbuilder with farming" is a genre list; "you plant your next deck before you know what you will face" is a hook.
 - Recommendation from: the user's own words about the moment they want the player to have, compressed to one sentence.
 - Accepted when: the user says yes, or edits the sentence and confirms. A sentence that lists genres goes back as a new question with a hook drafted from the user's answer.
+- Never deferred. If the user stops before writing it, the interview is paused (Brief), not done.
 
 ### Hook check
 
@@ -33,6 +36,7 @@ Shape, where the recommendation comes from, and what accepts it, per slot. The w
 - Shape: three to five noun phrases, each with one real feature it rules out.
 - Recommendation from: the north star. For each pillar, propose the feature it excludes, taken from features the user has mentioned where possible. Test the set: pick two features from the conversation and say which pillar each serves. A feature no pillar touches, or a pillar that rules out nothing, is sent back in the next round.
 - Accepted when: each pillar has a rules-out the user accepted or replaced.
+- Deferred as: the noun phrase kept, `Rules out: TBD: ask`, and the pillar named as unresolved in the exit reply; tools reading it label it a working assumption with no exclusion yet.
 
 ### Non-goals and constraints
 
@@ -43,7 +47,7 @@ Shape, where the recommendation comes from, and what accepts it, per slot. The w
 ### Target player
 
 - Shape: who, what they play now, what they want from this. A person, not a demographic range.
-- Recommendation from: the player of the closest game named in the hook check, with what they want that game does not give them.
+- Recommendation from: the player of the closest game named in the hook check, with what they want that game does not give them. When the hook check found no closest game that can be verified, nothing is derived from an analog: the question asks the user who they imagine playing it, and the three parts are drafted from that answer.
 - Accepted when: the user confirms or corrects all three parts.
 
 ### Core loop
@@ -68,7 +72,7 @@ What the reply says it is looking for, per slot that commonly escalates:
 
 Target player, core loop, constraints, and hook check are mostly facts; they are asked once more and deferred as `TBD` with the settling question if the user does not have them.
 
-After the user's text: derive every remaining slot from it, show each derivation as `Proposed`, and confirm each as its own question in one round. A derivation the user rejects becomes a deferred slot, not another short question.
+After the user's text: derive every remaining slot from it, show each derivation as `Proposed`, and confirm each as its own question in one round. A derivation the user rejects becomes a deferred slot, not another short question; a rejected pillar keeps its noun phrase with `Rules out: TBD: ask`. The north star is the exception: a rejected north-star derivation goes back as the request to write it, and the interview continues until the user writes it or stops (paused, as the Brief says).
 
 ## Read-first
 
@@ -90,4 +94,4 @@ Q2 Hook check
 ...
 ```
 
-Settled answers reshape the frontier: the next round asks only the slots whose prerequisites are now settled and that remain open.
+Answers are read by number. A bare "yes" while more than one question is pending gets one reply, "yes to which number, or all", and nothing is accepted until the number comes. Settled answers reshape the frontier: the next round asks only the slots whose prerequisites are now settled and that remain open.

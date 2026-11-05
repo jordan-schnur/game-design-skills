@@ -2,7 +2,7 @@
 
 Status: draft for your approval. v1 described ten skills built directly from the source document; those draft files now live in this repo under `skills/` and are installed into `~/.claude/skills` as symlinks by `make install`. v2 redesigned around your answers and a Codex review. v3 folds in your second round of answers and Codex's second review ("approve with changes"). Nothing is applied to the files until you approve this document.
 
-Source: `~/Downloads/game-dev.md`, a research report on what makes games fun (GDC talks, postmortems, developer interviews), deliverables A to I.
+Source: a research report on what makes games fun (GDC talks, postmortems, developer interviews), deliverables A to I, supplied by the user; not in this repo.
 
 ## 1. What this is for
 

@@ -6,7 +6,7 @@ What each source teaches and when to consult it, as the source report lists them
 |---|---|---|
 | Nolan Bushnell, Guardian interview | Origin of "easy to learn, difficult to master"; fundamentals over gimmicks | Onboarding, difficulty curve, resisting engagement hacks |
 | Frank Cifaldi, GDC recap of Blizzard's core design concepts (Rob Pardo) | Blizzard's restatement of easy/learn, player focus | Difficulty, accessibility, depth |
-| Soren Johnson, Designer Notes blog | Interesting decisions, fun-per-time formula, interface tasks, players optimizing fun away | Strategy complexity, padding, dominant strategies |
+| Soren Johnson, Designer Notes blog | Interesting decisions, fun-per-time formula, interface tasks, players optimizing fun away (the report attributes that phrase to no one; crediting it to Johnson is common and `[outside report]`, as P11 says) | Strategy complexity, padding, dominant strategies |
 | Sid Meier's Memoir! | Design diaries, spreadsheet prototyping, cutting features, the Colonization randomness lesson | Systems design, pillars, when to cut |
 | Hunicke et al., MDA: A Formal Approach to Game Design (the report names Hunicke only; LeBlanc and Zabek as co-authors are `[outside report]`) | Mechanics to dynamics to aesthetics as a lens | Explaining why a mechanic produces a feeling; not a recipe |
 | Raph Koster, A Theory of Fun for Game Design | Fun as pattern-learning; mastery then grind | Justifying challenge, diagnosing grind |

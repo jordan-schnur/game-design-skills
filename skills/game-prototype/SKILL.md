@@ -6,21 +6,21 @@ disable-model-invocation: true
 
 # Game Prototype
 
-A prototype answers one question with the least build that can answer it. The question comes from the bible's riskiest assumption; the gate is written before building, in the shape the genre gives it.
+One question, answered by the least build that can answer it, from the riskiest assumption; the gate is written before building, in the genre's shape.
 
 ## Reads
 
-1. **The bible's core block**, riskiest assumption first. The bible is `<git top level, else cwd>/docs/game-bible.md`; fallbacks are `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which. None: say so, name `/game-bible`, and draft the riskiest assumption as a labelled working assumption.
-2. **The matching section of `GENRES.md`** in the `ask-sid` skill directory (the sibling of this skill's directory). Name the section used. A game matching none says so and reasons from the catalog alone.
-3. **Catalog anchors**: P15 Core fun before art, P04 Movement itself should be fun, P02 Interesting decisions. Index and full entries: `PRINCIPLES.md` in the `ask-sid` skill directory.
+1. **The bible's core block**, riskiest assumption first. At `<git top level, else cwd>/docs/game-bible.md`; fallbacks are `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which. None: say so, name `/game-bible`, and draft the riskiest assumption as a labelled assumption. Then any Decision, Experiment, Playtest, or Open-question entry whose heading names the feature or question under test (grep the bible and its `docs/game-bible/*.md` archives by heading; never read whole archives).
+2. **The matching section of `GENRES.md`** in the `ask-sid` skill directory (the sibling of this skill's directory). Name it; a game matching none says so and reasons from the catalog alone.
+3. **Catalog anchors**: P15 Core fun before art, P04 Movement itself should be fun, P02 Interesting decisions. Index and entries: `PRINCIPLES.md` in the `ask-sid` skill directory.
 
 ## Output
 
-Seven parts, in order. Tables and bullets; detail on request.
+Seven parts, in the output order of `ask-sid/SKILL.md`, section Answer forms (conflict notice first when there is one; hand-off last). Tables and bullets; full form on "settle this" or "record this".
 
-1. **Short form.** Verdict, Lens, Pillar check, Evidence, Test, Confidence, per `ask-sid/SKILL.md`, section Answer forms. Lens names the genre section.
-2. **Question.** One sentence from the riskiest assumption, answerable by watching someone play. "Does sustaining speed through a room stay satisfying with no art and no enemies?"
-3. **Gate.** Pass and fail, each an observation of what testers do. The shape is the genre section's Prototype gate field:
+1. **Short form.** Verdict, Lens, Pillar check, Evidence, Test, Confidence, per `ask-sid/SKILL.md`, section Answer forms: each line one or two sentences, under 150 words together. Lens names the genre section.
+2. **Question.** One sentence from the riskiest assumption, answerable by watching someone play.
+3. **Gate.** Pass and fail, each an observation shaped by the genre section's Prototype gate field; where that shape includes what the player can say (minimalist: a loss the player can explain), testimony is part of the gate:
 
 | Genre section | Gate shape |
 |---|---|
@@ -29,28 +29,26 @@ Seven parts, in order. Tables and bullets; detail on request.
 | Minimalist systems | One rule set whose pressure grows with no content added; a loss the player can explain |
 | No match | The Question itself, with its pass and fail observations |
 
-Isolating one action is the feel section's shape, not every game's; a prototype whose question needs two interacting pieces builds both.
-
-4. **Minimum build.** The pieces the gate needs, every tuning number visible on screen, then an exclusion list (art, menus, saves, secondary mechanics) that stays excluded. In the feel section the cheap feedback layer (a sound per action, hit-stop) is part of the minimum: a mute action reads worse than it plays.
-5. **Tuning plan.** The parameters that govern the gate, changed one at a time, each kept value logged with why. Double or halve before nudging, noted as a heuristic attributed to Sid Meier, to verify before citing it as his.
-6. **Observation plan.** Who plays (the developer counts, and is not enough; one to five friends), what to watch (the genre section's Playtest signals), and the no-logging substitute per metric: a screen recording for positions and retries, a tally sheet for counts, asking where they stopped for session length. Non-leading questions, after play.
-7. **Record.** A Planned experiment entry shown in full, per `RECORDING.md` in the `game-bible` skill directory (skeleton in `TEMPLATE.md` next to it): hypothesis as heading, `State: Planned (by /game-prototype, <date>)`, variable changed, gate or metric from part 3, `Observed: pending`, `Verdict: pending`. Written on the user's yes to that entry.
+4. **Minimum build.** The pieces the gate needs, every tuning number visible on screen, then the exclusions for this hypothesis, each named, left out because the gate does not need it and added back when it does (a theme-first pillar brings presentation in; a two-system question builds both). In the feel section the cheap feedback layer (a sound per action, hit-stop) is part of the minimum: a mute action reads worse than it plays.
+5. **Tuning plan.** The parameters that govern the gate, changed one at a time, each kept value logged with why. Double or halve before nudging (Meier-attributed, unverified `[outside report]`).
+6. **Observation plan.** Who plays (one to five friends; the developer alone is not enough), what to watch (the genre section's Playtest signals), and the no-logging substitute per metric: screen recording for positions and retries, a tally sheet for counts, asking where they stopped for session length. Non-leading questions, after play.
+7. **Record.** A Planned experiment entry shown in full, per `RECORDING.md` in the `game-bible` skill directory: `State: Planned (by /game-prototype, <date>)`, gate or metric from part 3, `Observed: pending`, `Verdict: pending`. Written on the user's yes.
 
 ## When the gate fails
 
-Three rungs, in order: tune within the mechanic (parameters, feedback, camera), swap it for its nearest sibling (slope momentum for dash momentum), pivot the concept. Each move names its rung and what exhausted the previous one. One exception: when the gate result itself says the concept is dead (the core is tolerated at every parameter set, or no decision moves the run), say so and go straight to pivot. Sunk cost does not skip a rung; half-written code is not an argument.
+Three rungs, in order: tune within the mechanic (parameters, feedback, camera), swap it for its nearest sibling (slope momentum for dash momentum), pivot. Each move names its rung and what exhausted the previous one. When the gate result says the concept is dead (the core is tolerated at every parameter set, or no decision moves the run), go straight to pivot and say so. Sunk cost does not skip a rung.
 
 ## Hand-offs
 
-One line after the short form: type `/game-...`, then one reason.
+The reply's last line: type `/game-...`, then one reason.
 
 | Type | When |
 |---|---|
-| `/game-mechanic-critique` | A verdict on a specific mechanic is wanted before building |
+| `/game-mechanic-critique` | A verdict on one mechanic before building |
 | `/game-playtest` | Results are in |
 | `/game-bible` | No bible exists |
 
 ## Never
 
-- Reports that the core is fun; the gate observation says it, or does not.
+- Reports that the core is fun; the gate observation does.
 - Writes to the bible without a yes to the entry shown.
