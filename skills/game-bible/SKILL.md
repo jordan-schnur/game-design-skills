@@ -1,44 +1,48 @@
 ---
 name: game-bible
-description: Use when a game design decision, pillar, rule, constraint, experiment result, or playtest finding needs to be recorded or looked up, when a user says "write that down", "update the design doc", "we decided to cut/add X", or asks "why did we decide...", or when another game skill needs the game's pillars before judging anything.
+description: Use when the user types /game-bible to define a game's north star and pillars, to revisit them, or to record a decision, experiment, playtest, or open question.
+disable-model-invocation: true
 ---
 
 # Game Bible
 
-The bible is the game's memory: one living, version-controlled document holding vision, pillars, rules, constraints, experiments, playtest findings, decisions with rationale, and open questions. Every `game-*` skill reads it before judging and writes to it after deciding. Rationale that is not written is re-argued or lost.
+The bible is the game's memory. Its core is the north star: the one sentence every later cut is measured against, and the six slots that hang off it. Every suite skill reads it before judging and writes to it through `RECORDING.md` next to this file. Two modes: define finds the core; record adds one entry.
 
-## Locate or create
+## Mode
 
-1. Look for `docs/game-bible.md`, then `GAME-BIBLE.md`, then any file whose heading includes "game bible" or "design pillars". Read it fully before writing.
-2. If none exists, offer to create `docs/game-bible.md` from [TEMPLATE.md](TEMPLATE.md). Fill what the user has actually said as fact. Anything the agent inferred or proposed (a vision sentence, pillars drafted by game-concept) is written in but marked `Proposed` until the user confirms it. Every other slot is `TBD`. A bible that presents the agent's guess as the user's decision is worse than an empty one.
+- No argument, `define`, or no bible found: define.
+- Anything else (`/game-bible we cut the shield`): record.
 
-## Writing a decision
+Locate the bible as `RECORDING.md`, section Who writes, says. A bible with no state lines is read as its section Bibles without states says.
 
-A decision entry has these slots, all present. A slot the user has not supplied is written as `TBD: ask` so it is visibly missing, never filled by inference.
+## Define
 
-```
-### <Feature or question>: <Decided: add / remove / change / defer>
-- Date: <YYYY-MM-DD>   Decided by: <name>
-- Why: <the rationale as stated by the person who decided>
-- Evidence: <playtest observation, metric, or analog; "none yet" is a valid value>
-- Pillar check: <which pillar this reinforces or protects; or which it strains, and why that is accepted>
-- Alternatives considered: <what else was on the table and why not>
-- Revisit if: <the observable condition that reopens this>
-```
+**Read first.** Read any existing bible, design doc, pitch, or README. Every slot a document answers is drafted from it, marked `Proposed`, and confirmed in one line that names the source, rather than asked. For a game that already has code, the first question is the intended experience, asked before anything describes what is built, so the pillars recover intent instead of rationalizing what got made.
 
-When the user gives a decision without a rationale, write the entry now with `Why: TBD: ask` so the decision is not lost, then ask for the rationale in one question and fill it in from the answer. Never fill it from inference.
+**Frontier.** Seven slots and nothing else: north star, hook check, pillars, non-goals and constraints, target player, core loop, riskiest assumption. Shapes and recommendation sources are in `INTERVIEW.md` next to this file; the written form is in `TEMPLATE.md`. Rules, systems, levels, art, and engine wait for the tools.
 
-## Writing other entries
+**Engine.** Call the Skill tool with skill `grilling`, passing as the argument the Brief section of `INTERVIEW.md` followed by the slots read-first settled. If the call fails or the skill is absent, run the same brief inline in the round format at the end of `INTERVIEW.md`: every open slot as a numbered question titled by its slot, one recommendation, two or three options, then wait.
 
-- **Pillar:** one line, a noun phrase a stranger can repeat, plus one sentence on what it rules out.
-- **Experiment:** hypothesis, the single variable changed, what was observed, verdict (kept / dropped / inconclusive).
-- **Playtest log:** date, who (count and relation to the dev), build, what was tested, what players did (behavior first), what they said (second), issues.
-- **Open question or risk:** the question, why it threatens fun, what evidence would settle it.
+**Scoped acceptance.** Each question carries one recommendation. "Yes" accepts that one only; other open slots keep their own questions. Facts are the agent's job, found by reading, with web search only on the user's yes. Decisions are the user's.
 
-## Conflict check
+**Escalation.** A slot asked in two rounds of short questions and still open gets no more short questions. The reply says what it is looking for (for the north star: the one sentence every later cut is measured against) and asks the user to write it in their own words, at any length. The remaining slots are derived from that text, each shown as `Proposed` and confirmed as its own question.
 
-Before saving any entry, compare it against the pillars, non-goals, and existing decisions. If it contradicts one, say so at the top of the reply and ask whether the new entry or the old one is right. Do not silently record a contradiction; do not silently refuse one either. The user decides.
+**Exit.** Done when all three hold:
 
-## Form
+1. Every slot is filled or explicitly deferred as `TBD: <the question that would settle it>`.
+2. The north star is one sentence.
+3. Each pillar has ruled out a real feature, from the user's list or one the agent proposed and the user accepted or rejected.
 
-Prose, bullets, and tables. No cryptic shorthand. Newest decisions at the top of their section. Keep the vision page to one screen.
+Deferred slots are legitimate; silent gaps are not.
+
+**Output.** `docs/game-bible.md` from `TEMPLATE.md`, every agent-drafted slot marked `(Proposed by /game-bible, YYYY-MM-DD)`. Non-goals and constraints carries one scope-reality line: the stated hours against a comparable shipped game's scope, marked as the agent's estimate. The riskiest assumption is also written as an Open question and a Planned experiment with `Observed: pending` and `Verdict: pending`. An existing design doc is appended to or linked, never rewritten (`RECORDING.md`, section Rules). The reply reports what was written, where, in which state, and ends with: type `/game-prototype <the question>` to test the assumption.
+
+## Record
+
+Apply `RECORDING.md` in full: locate, read, conflict check, write, then report at the top of the reply what was written, in which section, in which state. The entry is written first, with `TBD: ask` in every slot the user did not supply, so a quick "don't forget" survives the conversation ending. Then one question for the most important missing slot, `why` first, and the answer filled in. A contradiction with a pillar, a constraint, or a Decided entry opens the reply with the old entry quoted and one question: is the new entry right or the old one? `Proposed` becomes `Decided` only when the user says so.
+
+## Never
+
+- Write a value the user did not give as if they had; the marker is `TBD: ask`.
+- Ask a define question about rules, systems, levels, art, or engine.
+- Report that something is fun; players show that, and the Planned experiment tests it.
