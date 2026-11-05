@@ -2,7 +2,7 @@
 
 Living document. Every design judgement reads this first and writes here after, following `RECORDING.md` in the `game-bible` skill. Newest entries at the top of each section. Anything marked Proposed is a draft the agent made from what the user said: a working assumption until the user marks it Decided. `TBD: ask` is a slot the user has not filled; `pending` is a slot its state does not yet allow.
 
-When a section passes about fifty lines, its older entries move to `docs/game-bible/<section>.md` and the section keeps its newest entry under the line `Older entries: [docs/game-bible/<section>.md](game-bible/<section>.md)`.
+When a section passes about fifty lines, its older entries move to `<project root>/docs/game-bible/<section>.md` and the section keeps its newest entry under the line `Older entries: [docs/game-bible/<section>.md](game-bible/<section>.md)`. The link target is relative to this file's location; the form shown is for a bible at `docs/game-bible.md`.
 
 ## Core
 
@@ -18,20 +18,21 @@ When a section passes about fifty lines, its older entries move to `docs/game-bi
 
 **Non-goals and constraints**
 
-- Non-goal: <what the game will not do>
-- Constraint: team <n>, <hours> per week, <platform>, <deadline>
+- Non-goal: <what the game will not do>. (Proposed by /game-bible, YYYY-MM-DD)
+- Constraint: team <n>, <hours> per week, <platform>, <deadline>. (Proposed by /game-bible, YYYY-MM-DD)
+- Scope reality: <the stated hours against a comparable shipped game's scope, and the smallest version that could ship>, the agent's estimate. (Proposed by /game-bible, YYYY-MM-DD)
 
 **Target player:** <who>, plays <what they play now>, wants <what they want from this>. (Proposed by /game-bible, YYYY-MM-DD)
 
 **Core loop**
 
-- Micro: <the action repeated every few seconds>
-- Loop: <the cycle of a session or run>
-- Meta: <what carries across sessions>
+- Micro: <the action repeated every few seconds>. (Proposed by /game-bible, YYYY-MM-DD)
+- Loop: <the cycle of a session or run>. (Proposed by /game-bible, YYYY-MM-DD)
+- Meta: <what carries across sessions>. (Proposed by /game-bible, YYYY-MM-DD)
 
 **Riskiest assumption:** <the belief that, if false, kills the concept>. Tested by `/game-prototype <the question>`. Tracked below as Open question "<question>" and Planned experiment "<hypothesis>". (Proposed by /game-bible, YYYY-MM-DD)
 
-When the user confirms a core slot, its mark becomes `(Decided by <name>, YYYY-MM-DD)`. A deferred slot reads `TBD: <the question that would settle it>`.
+When the user confirms a core slot, its mark becomes `(Decided by <name>, YYYY-MM-DD)`. A deferred slot reads `TBD: <the question that would settle it>`; a deferred pillar keeps its noun phrase with `Rules out: TBD: ask`. The north star is never deferred: an interview that stopped before the user wrote it leaves `North star: TBD (interview paused: <the question>)`, and until that is filled the bible is not usable for pillar checks (readers say so and name `/game-bible`).
 
 ## Rules and systems
 
@@ -59,7 +60,8 @@ How challenge and content unfold; what the player learns at each stage.
 
 State line variants:
 
-- `State: Decided (by <name>, YYYY-MM-DD)` with `Decided by: <name>` and `Supersedes: "<heading>" (YYYY-MM-DD)` or `none`
+- While Proposed, a replacement for an existing entry carries `Would supersede: "<heading>" (YYYY-MM-DD)` in place of `Supersedes: none`; the old entry is untouched
+- `State: Decided (by <name>, YYYY-MM-DD)` with `Decided by: <name>` and `Supersedes: "<heading>" (YYYY-MM-DD)` or `none`; a `Would supersede` becomes `Supersedes` at this moment and the old entry becomes Superseded
 - `State: Superseded (by "<heading>", YYYY-MM-DD)`; the rest of the entry stays as written
 
 ## Experiments

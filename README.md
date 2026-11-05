@@ -11,12 +11,15 @@ skill follows are in [docs/tickets/CONVENTIONS.md](docs/tickets/CONVENTIONS.md).
 
 ## The suite
 
-Every answer from the suite opens with the same six labelled lines (Verdict,
-Lens, Pillar check, Evidence, Test, Confidence), defined once in
-`ask-sid/SKILL.md` under Answer forms. Every skill reads the game bible first,
-at `docs/game-bible.md` under the project root, and writes to it only through
-the recording contract in `game-bible/RECORDING.md`, only after the user says
-yes to an entry shown in full.
+Every design answer from the panel and the four tools opens with the same six
+labelled lines (Verdict, Lens, Pillar check, Evidence, Test, Confidence),
+defined once in `ask-sid/SKILL.md` under Answer forms. `game-bible` is the
+exception: its define interview produces a bible, not six lines, and its
+record mode writes the entry the user asked for. Every skill reads the game
+bible first, at `docs/game-bible.md` under the project root, and writes to it
+only through the recording contract in `game-bible/RECORDING.md`: the panel
+and the tools only after the user says yes to an entry shown in full,
+`game-bible` on the user's request.
 
 **ask-sid** is the panel: a table of designers, Sid Meier chairing, who reason
 from the principles catalog. The panelist names the lens, the cited catalog
@@ -74,15 +77,16 @@ holds launch mode's parts.
 ## Install
 
 ```bash
-git clone <remote> ~/dev/game-design-skills
-cd ~/dev/game-design-skills
+git clone <remote> game-design-skills
+cd game-design-skills
 make install
 ```
 
 `make install` symlinks each `skills/<name>` into `~/.claude/skills/<name>`,
 so `git pull` updates the installed skills. Set `DEST` to install elsewhere
 (`make install DEST=~/.agents/skills`). `make uninstall` removes the links,
-`make check` validates frontmatter, `make list` names the skills.
+`make check` validates frontmatter (fields, length, and a YAML parse when
+`ruby` is on PATH), `make list` names the skills.
 
 ## Layout
 
@@ -128,8 +132,11 @@ The parts a reader of the skills meets first:
   `## States and transitions`, `## Rules`, `## Bibles without states`.
 - Bible entries are Decision (Proposed, Decided, Superseded), Experiment
   (Planned, Running, Done), Playtest (no state), and Open question (Open,
-  Settled). Everything the agent writes is `Proposed` until the user flips
-  it; slots the user did not supply carry `TBD: ask`.
+  Settled). A Decision the agent writes is `Proposed` until the user flips it
+  to `Decided`; the other types enter in their own first state (an Experiment
+  as `Planned` with `pending` results, an Open question as `Open`, a Playtest
+  entry as attributed facts with no state). Slots the user did not supply
+  carry `TBD: ask`.
 - `SKILL.md` bodies stay at or under 700 words; reference files are as long
   as they need to be. No em-dashes. `make check` must pass.
 

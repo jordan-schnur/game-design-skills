@@ -19,13 +19,13 @@ Twenty principles. Each entry: Origin, Explanation, Mechanism, Examples, Counter
 | P07 | Every Feature Must Serve a Pillar | Judge every feature against three to five written pillars | practiced |
 | P08 | Remove What Does Not Create a Decision | Cut features that create no player decision | practiced |
 | P09 | Simple Rules, Emergent Systems | Lasting interest comes from interacting systems | practiced |
-| P10 | Check Positive Feedback, Use Negative Feedback | Label each loop; decide where a snowball ends | practiced |
+| P10 | Check Positive Feedback, Use Negative Feedback | Label each loop; decide where a snowball ends | opinion |
 | P11 | Players Will Optimize; Tell Emergent From Degenerate | Players find dominant strategies; sort intended mastery from degenerate play | practiced |
 | P12 | Ramp Challenge With Skill | Difficulty rises with skill, with relief after peaks | studied |
 | P13 | Teach Through Play, Not Text | Mechanics demonstrate themselves before the real test | practiced |
 | P14 | Clear, Consistent Feedback | Every action gets an immediate, legible response | practiced |
 | P15 | Core Fun Before Story, Art, or Rewards | Prove the loop in greybox before presentation | practiced |
-| P16 | Measure Behavior, Not Opinions | What players do outweighs what they say | practiced |
+| P16 | Measure Behavior, Not Opinions | Behavior and words are both evidence; behavior first, words the tiebreaker | practiced |
 | P17 | AI and Simulation Are Not Playtesters | AI predicts fun as a hypothesis; humans verify it in play | opinion |
 | P18 | Finish a Simple Game Well | Ship a tight small game; cut by default | practiced |
 | P19 | A Distinct, Well-Communicated Concept Beats a Gimmick | A clear hook and execution beat engagement hacks | opinion |
@@ -151,7 +151,7 @@ Twenty principles. Each entry: Origin, Explanation, Mechanism, Examples, Counter
 **When breaking it helped:** Power fantasies where snowballing is the point of a bounded run, as in many roguelites `[outside report]`.
 **Application:** For each system, label its loop. Decide deliberately whether a snowball is intended and where it ends.
 **Validation:** Track how early a run's outcome becomes certain. Too early means unchecked positive feedback.
-**Evidence:** practiced; a systems-design heuristic the report states with loop types named and no game or study attached.
+**Evidence:** opinion; a systems-design heuristic the report states with loop types named and no developer account, game, or study attached.
 
 ## P11 Players Will Optimize; Tell Emergent From Degenerate [added]
 
@@ -216,13 +216,13 @@ Twenty principles. Each entry: Origin, Explanation, Mechanism, Examples, Counter
 ## P16 Measure Behavior, Not Opinions [added]
 
 **Origin:** Valve (every employee playtests; heatmaps of where players die). Wube (precise telemetry on drop-off). Nintendo's relentless playtesting. The report's finding that players say they want freedom but enjoy guided challenge.
-**Explanation:** What players do (quit here, pick this, replay that) is stronger evidence than what they say. Designers see patterns players will not.
-**Mechanism:** Stated preference and revealed preference diverge.
+**Explanation:** What players do (quit here, pick this, replay that) and what they say are both evidence. Behavior is read first because it locates the moment; words decide between obligation and enjoyment when the behavior alone cannot. Where the genre file says so (minimalist systems, where the experience is flow), the two weigh equally and a mismatch between them is the finding. Designers see patterns in behavior that players do not report, and players report feelings that behavior does not show.
+**Mechanism:** Stated preference and revealed preference diverge, so each is recorded and the two are read against each other.
 **Examples:** Above.
 **Counterexamples:** None in source.
 **When breaking it helped:** Concept stage, before there is behavior to measure: the report's evaluation framework then reaches for analogs and more prototyping rather than deciding on opinion.
-**Application:** Instrument death positions, time per activity, choice frequency, quit points. Record sessions on video to catch frustration moments. Ask open, non-leading questions afterward.
-**Validation:** Decisions in the bible cite behavior, not quotes alone.
+**Application:** Instrument death positions, time per activity, choice frequency, quit points. Record sessions on video to catch frustration moments. Ask open, non-leading questions afterward and record the answers as testimony beside the counts.
+**Validation:** Decisions in the bible cite what players did and what they said, each attributed to a playtest, and name which one decided when the two disagreed.
 **Evidence:** practiced; Valve, Wube, and Nintendo practice as the report relays it. The report says it cites evidence for the stated-versus-revealed preference gap but names none.
 
 ## P17 AI and Simulation Are Not Playtesters [added]
