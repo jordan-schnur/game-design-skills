@@ -1,6 +1,6 @@
 # Developer Playbook
 
-How exceptional developers and studios work, as the source report records them. Each entry: fun philosophy, prototyping habit, how they learn from playtesting, an admitted mistake, and the transferable lesson. Quotes are as the report gives them; where the report paraphrases, so does this file.
+How exceptional developers and studios work, as the source report records them. Each entry: fun philosophy, prototyping habit, how they learn from playtesting, an admitted mistake, and the transferable lesson. Quotes are as the report gives them; where the report paraphrases, so does this file. Anything the report does not contain is tagged `[outside report]`: a lead to verify, not a fact this file has checked.
 
 ## Sid Meier (Firaxis)
 
@@ -9,7 +9,7 @@ How exceptional developers and studios work, as the source report records them. 
 - **Learning from play:** Discards elements that add no strategy, even late. Removed a feature in Civilization II that unbalanced early-game growth.
 - **Admitted mistake:** Colonization suffered from overly random events, reducing player agency. Randomness must leave the decision with the player.
 - **Transferable lesson:** Name the pillar (Civilization's: empire-building decisions) and align every mechanic to it. Cut what does not produce a decision.
-- **Widely attributed rules (verify before quoting publicly):** when tuning a number, double it or halve it rather than nudging; the player must be the star; one good game beats two great ones bolted together.
+- **Attributed to Meier, unverified `[outside report]`:** when tuning a number, double it or halve it rather than nudging; the player must be the star; one good game beats two great ones bolted together. None of the three appears in the report. Cite them as attributed and unverified, and carry the tag.
 
 ## Shigeru Miyamoto (Nintendo)
 
@@ -29,7 +29,7 @@ How exceptional developers and studios work, as the source report records them. 
 
 ## Jonathan Blow (Thekla)
 
-- **Fun philosophy:** Each game explores one novel idea deeply. Teach through gameplay, never text.
+- **Fun philosophy:** Each game explores one novel idea deeply. Teaches through gameplay rather than tutorial text.
 - **Prototyping:** Hand-crafted, sometimes on paper before code. Identified time-reversal as Braid's core and scrapped half-implemented mechanics to protect it.
 - **Learning from play:** Ruthless iteration until the core idea works.
 - **Admitted mistake:** Let code complexity creep into The Witness and had to refactor.
@@ -66,7 +66,7 @@ How exceptional developers and studios work, as the source report records them. 
 ## Supergiant Games (Bastion, Hades)
 
 - **Fun philosophy:** A strong audio-visual theme from the start; world and lore established early (a deliberate exception to greybox-first).
-- **Testing:** Player-recording metrics. Added reactive status text (the narrator) after playtests showed players wanted acknowledgement.
+- **Testing:** Player-recording metrics. Added reactive status text after playtests. The report records the addition and its timing, not what players asked for.
 - **Admitted mistake:** Pyre had pacing issues; later titles use shorter story beats.
 - **Transferable lesson:** Continuous feedback to the player is a feature. Theme can lead if theme is a pillar.
 
