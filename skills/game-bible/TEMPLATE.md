@@ -1,8 +1,8 @@
 # Game Bible: <Working title>
 
-Living document. Every design judgement reads this first and writes here after, following `RECORDING.md` in the `game-bible` skill. Newest entries at the top of each section. Anything marked Proposed is a draft the agent made from what the user said: a working assumption until the user marks it Decided. `TBD: ask` is a slot the user has not filled; `pending` is a slot its state does not yet allow.
+Living document. Every design judgement reads this first and writes here after, following `RECORDING.md` in the `game-bible` skill. Newest entries at the top of each section. Anything marked Proposed is a draft the agent made from what the user said, including a recommendation the user accepted with "yes": a working assumption until the user says it is decided. A core slot in the user's own words is marked Decided by the name given at the start of the interview (`RECORDING.md`, section Rules, Core slot marks). `TBD: ask` is a slot the user has not filled; `pending` is a slot its state does not yet allow.
 
-When a section passes about fifty lines, its older entries move to `<project root>/docs/game-bible/<section>.md` and the section keeps its newest entry under the line `Older entries: [docs/game-bible/<section>.md](game-bible/<section>.md)`. The link target is relative to this file's location; the form shown is for a bible at `docs/game-bible.md`.
+When a section passes about fifty lines, its older entries move to `<project root>/docs/game-bible/<section>.md` and the section keeps its newest entry under the line `Older entries: [docs/game-bible/<section>.md](game-bible/<section>.md)`. The link target is relative to this file's location; the form shown is for a bible at `docs/game-bible.md`. `/game-bible` record mode makes the move the next time it writes to that section; readers only report it.
 
 ## Core
 
@@ -32,7 +32,7 @@ When a section passes about fifty lines, its older entries move to `<project roo
 
 **Riskiest assumption:** <the belief that, if false, kills the concept>. Tested by `/game-prototype <the question>`. Tracked below as Open question "<question>" and Planned experiment "<hypothesis>". (Proposed by /game-bible, YYYY-MM-DD)
 
-When the user confirms a core slot, its mark becomes `(Decided by <name>, YYYY-MM-DD)`. A deferred slot reads `TBD: <the question that would settle it>`; a deferred pillar keeps its noun phrase with `Rules out: TBD: ask`. The north star is never deferred: an interview that stopped before the user wrote it leaves `North star: TBD (interview paused: <the question>)`, and until that is filled the bible is not usable for pillar checks (readers say so and name `/game-bible`).
+The marks above show the Proposed form; a slot the user wrote or stated themselves, or later says is decided, reads `(Decided by <name>, YYYY-MM-DD)`, with `TBD: ask` for the name when none was given. A deferred slot reads `TBD: <the question that would settle it>`; a deferred pillar keeps its noun phrase with `Rules out: TBD: ask`. The north star is never deferred: an interview that stopped before the user wrote it leaves `North star: TBD (interview paused: <the question>)`, and until that is filled the bible is not usable for pillar checks (readers say so and name `/game-bible`).
 
 ## Rules and systems
 
@@ -80,8 +80,8 @@ State line variants:
 
 ## Playtest log
 
-### YYYY-MM-DD, build <id>, <n> testers (<relation to the developer>)
-- Tested: <the question this session was run to answer>
+### YYYY-MM-DD, build <id>, <n> testers (<relation to the developer>): <what was tested>
+- Tested: <the question this session was run to answer, named so a search for the feature finds it>
 - Players did: <behavior, counted where it can be: deaths, quits, retries, positions>
 - Players said: <their words, marked as testimony>
 - Issues: <bugs and blockers, separate from design findings>

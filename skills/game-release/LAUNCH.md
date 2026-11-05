@@ -1,6 +1,6 @@
 # Launch mode
 
-The parts of a `/game-release` launch-mode reply, in order, after the short form (output order in `ask-sid/SKILL.md`, section Answer forms). The marks for facts about other games (known, from memory, "none I can verify") are defined in `SKILL.md` next to this file and apply to every part here. The reply works for a developer with one to five friends as testers and no telemetry.
+The parts of a `/game-release` launch-mode reply, in order, after the short form (output order in `ask-sid/SKILL.md`, section Answer forms). Every fact about another game (its price, hours, demo, launch), in either mode, carries one of three marks: known (the user said it or it was read this session), from memory (recalled, unverified), or "none I can verify" with an offer to search. The reply works for a developer with one to five friends as testers and no telemetry.
 
 1. **Promise.** One sentence from the bible's north star that store page, trailer, and demo all deliver. An unclear hook makes the launch problem a concept problem: say so and name `/game-bible` to define the north star.
 2. **Audience and channels.** The target player from the bible, the games they play now, and the communities, showcases, and creators that serve them, each named. A channel is a place the user can post to, not a medium ("social media").

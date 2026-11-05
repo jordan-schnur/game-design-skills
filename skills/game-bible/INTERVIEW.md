@@ -6,17 +6,18 @@ The brief `game-bible` define passes to the `grilling` skill, and runs inline wh
 
 Interview the user to find a game's north star and the six slots that hang off it. The frontier is these seven slots and nothing else: north star, hook check, pillars, non-goals and constraints, target player, core loop, riskiest assumption. Rules, systems, levels, art, engine, and content are outside the frontier and are not asked.
 
+- The first question, asked once at the start: what name goes on decisions. The answer fills every `Decided by` mark; if the user gives none, the mark is `TBD: ask`. The name is never taken from git config, the file system, or the environment.
 - Title each question by its slot and number the questions in a round. One recommendation per question, drafted from what the user has said and what the project files hold. "Yes" accepts that recommendation and nothing else; other open slots keep their own questions in the same round. The grilling pane takes an answer per question, so a yes there is already scoped. In the inline fallback, a bare "yes" while several questions are pending is answered with "yes to which number, or all" before anything is accepted.
 - Facts are the agent's job: read the repository, the pitch, the existing bible. Name comparable shipped games only when they can be named with confidence; otherwise "none I can verify" and an offer to search, taken only on the user's yes. Decisions are the user's.
 - Prerequisites: north star first; hook check and pillars once a north star draft exists; the remaining slots as what they depend on settles.
 - Escalation: a slot asked in two rounds of short questions and still open gets no more short questions. Say what is being looked for, ask the user to write it in their own words at any length, derive the remaining slots from that text, and confirm each as its own question.
 - The north star cannot be deferred. Escalation on it continues until the user writes it. If the user stops first, the interview ends as paused: the bible is written with `North star: TBD (interview paused: <the question>)` and the reply says the bible is not usable for pillar checks until it is filled.
 - A pillar can be deferred: it is recorded with `Rules out: TBD: ask` and the exit reply lists it as unresolved.
-- Done when: the north star is one sentence the user wrote or confirmed; every other slot is filled or explicitly deferred as `TBD: <the question that would settle it>`; every pillar rules out a real feature or is deferred as above. Deferred slots are legitimate; silent gaps are not. Then the bible is written; nothing is acted on before the user confirms the core.
+- Done when: the north star is one sentence the user wrote or confirmed; every other slot is filled or explicitly deferred as `TBD: <the question that would settle it>`; every pillar rules out a real feature or is deferred as above. Deferred slots are legitimate; silent gaps are not. Then the bible is written, each slot marked per `RECORDING.md`, section Rules, Core slot marks: text the user wrote or stated themselves is `(Decided by <name>, YYYY-MM-DD)`; a recommendation accepted with "yes" is `(Proposed by /game-bible, YYYY-MM-DD)` until the user says "decided". Nothing is acted on before the user confirms the core.
 
 ## Slots
 
-Shape, where the recommendation comes from, and what accepts it, per slot. The written form of each is in `TEMPLATE.md` next to this file.
+Shape, where the recommendation comes from, and what accepts it, per slot. The written form of each is in `TEMPLATE.md` next to this file. What accepts a slot also sets its mark (`RECORDING.md`, section Rules, Core slot marks): the user's own words are Decided by the name given at the start; a recommendation accepted with "yes" is Proposed.
 
 ### North star
 
@@ -40,7 +41,7 @@ Shape, where the recommendation comes from, and what accepts it, per slot. The w
 
 ### Non-goals and constraints
 
-- Shape: what the game will not do; team size, hours per week, platform, deadline. One scope-reality line: the stated hours against a comparable shipped game's scope, marked as the agent's estimate, with the smallest version that could ship.
+- Shape: what the game will not do; team size, hours per week, platform, deadline. One scope-reality line: the stated hours shown as a multiplication (weeks until the deadline times hours per week equals the total; 16 weeks times 10 hours is 160 hours, never a bare figure) against a comparable shipped game's scope, marked as the agent's estimate, with the smallest version that could ship.
 - Recommendation from: non-goals follow from the pillars (what they exclude at project level). Team, hours, platform, and deadline are facts only the user holds; they are asked plainly in one question and deferred as `TBD` if unknown.
 - Accepted when: the non-goals are confirmed and the constraints are stated or deferred.
 

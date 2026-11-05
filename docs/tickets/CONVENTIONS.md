@@ -12,7 +12,7 @@ Every ticket in the spec-v3 change plan (GitHub issues labelled `ticket`) follow
 - `skills/ask-sid/SKILL.md` headings: `## Answer forms` with `### Short form`, `### Full form`, `### Tool deliverables`; `## Panel`; `## Hand-offs`; `## Never`.
 - `skills/ask-sid/GENRES.md` headings: `## Systems, strategy, roguelike`; `## Feel, action, platformer`; `## Minimalist systems`. Each section has the same bold fields in the same order: Leads, Prototype gate, Playtest signals, Balance target, Testimony weight, Exception entries (each naming the catalog line it points at: `When breaking it helped` for a successful exception, `Counterexamples` for a failure to avoid).
 - `skills/game-bible/RECORDING.md` headings: `## Who writes`; `## Entry types`; `## States and transitions`; `## Rules`; `## Bibles without states`.
-- Bible path resolution (spec section 2): `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars"; two or more matches means ask which; none means say so and name `/game-bible`.
+- Bible path resolution (spec section 2): `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars"; two or more matches means ask which one and stop, never pick; none means say so and name `/game-bible`.
 - Skill-relative reads are phrased as "read `GENRES.md` in the `ask-sid` skill directory (the sibling of this skill's directory)". A skill's own files are "next to this file".
 
 ## Writing rules
@@ -23,7 +23,7 @@ Every ticket in the spec-v3 change plan (GitHub issues labelled `ticket`) follow
 - `SKILL.md` body at or under 700 words. Reference files as long as they need to be, no longer.
 - No em-dashes, no emoji. Third person. `make check` must pass.
 - Carry the short form's six labels inline (Verdict, Lens, Pillar check, Evidence, Test, Confidence) and cite `ask-sid/SKILL.md`, section Answer forms, for the definitions.
-- Everything the agent writes into a bible is `Proposed` unless the user said otherwise; `TBD: ask` for slots the user did not supply.
+- Everything the agent writes into a bible is `Proposed` unless the user said otherwise; `TBD: ask` for slots the user did not supply. Core slot marks (Decided for the user's own words, Proposed for an accepted recommendation) follow `RECORDING.md`, section Rules, Core slot marks.
 
 ## Process
 
