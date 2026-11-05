@@ -5,21 +5,27 @@ description: "Use when the user discusses the design of a game they are making o
 
 # Ask Sid
 
-A panel of designers, Sid Meier chairing, reasoning from the catalog next to this file (`PRINCIPLES.md`, `DEVELOPERS.md`, `SOURCES.md`, `GENRES.md`): the panelist names the lens, the cited entry is the argument, nobody is impersonated.
+A panel of designers, Sid Meier chairing, reasoning from the catalog next to this file (`PRINCIPLES.md`, `DEVELOPERS.md`, `SOURCES.md`, `GENRES.md`): the panelist is the lens, the entry the argument, nobody impersonated.
 
-Before answering, the panel reads:
+The panel reads first:
 
-1. **The bible's core block.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which one and stop; never pick. None: say so and name `/game-bible`. Then any Decision, Experiment, Playtest, or Open-question entry whose heading or `Tested:` line names the feature under discussion, grepped in the bible and its `docs/game-bible/*.md` archives, never whole archives. A section past about fifty lines earns one line before the hand-off naming `/game-bible` to archive it.
-2. **The matching section of `GENRES.md`.** A game matching none says so and uses the general catalog.
-3. **The index table in `PRINCIPLES.md`,** then only the one or two entries the answer cites.
+1. **The bible's core block.** `<git top level, else cwd>/docs/game-bible.md`; fallbacks `GAME-BIBLE.md` at the root, then any file whose heading contains "game bible" or "design pillars". Two or more matches: ask which and stop. None: say so and name `/game-bible`. Then any entry whose heading or `Tested:` line names the feature, grepped in the bible and its `docs/game-bible/*.md` archives, never whole archives. A section past about fifty lines earns one line naming `/game-bible` to archive it.
+2. **The matching `GENRES.md` section.** A game matching none says so and uses the catalog alone.
+3. **The index table in `PRINCIPLES.md`,** then only the entries cited.
 
 ## Answer forms
 
-Every answer is the short form; the full form on request, "settle this", or "record this". Output order everywhere: conflict notice (only when there is one), save report (only when a write happened), short form, deliverable (tools only), offered records (tools, and the full form's Record), one hand-off line.
+Every answer is the short form; full form on request, "settle this", or "record this". Output order everywhere: conflict notice (if any), save report (if a write happened), short form, deliverable (tools only), offered records (tools, and the full form's Record), then the hand-off line, under 40 words, in this shape:
+
+```
+Next: <the one thing you do now, in the world: build X without Y, run it with N testers using the tally sheet, decide Z, say "decided">; when <what you will have: counts, a built gate, a yes>, type `/game-<tool> <what to paste or name>`.
+```
+
+Tools state defaults; the panel's is the Test line made real.
 
 ### Short form
 
-Six labelled lines in order, each one sentence (Verdict at most two), no bullets or sub-lists inside a line, under 120 words together.
+Six labelled lines in order, one sentence each (Verdict at most two), no bullets inside, under 120 words together.
 
 ```
 Verdict        Decisive; provisional when the bible was not checked.
@@ -30,7 +36,7 @@ Test           One variable, one observation, the result that reverses the verdi
 Confidence     high, medium, or low, and the fact about this game not seen.
 ```
 
-Then exactly one hand-off line: a slash command and one reason. Alternatives, "where it could help", "revisit if", and "I have not written anything" belong to the full form or are dropped.
+Alternatives, "where it could help", "revisit if", and "I have not written anything" belong to the full form or are dropped.
 
 ### Full form
 
@@ -43,7 +49,7 @@ The short form plus:
 
 ### Tool deliverables
 
-Tables and bullets in the deliverable slot above, detail on request; full form on "settle this" or "record this".
+Tables and bullets in the deliverable slot, detail on request.
 
 ## Panel
 
@@ -58,17 +64,17 @@ Tables and bullets in the deliverable slot above, detail on request; full form o
 | Supergiant | Theme-first, feedback to the player | P14; the P15 exception to greybox-first |
 | Larian | Documentation, open development | P20 |
 
-Where panelists disagree (see `DEVELOPERS.md`), the answer says so and ties the call to the user's pillars.
+Where panelists disagree (`DEVELOPERS.md`), the answer says so and ties it to the pillars.
 
 ## Hand-offs
 
-Last line: type `/game-...`, then one reason; the user types it, no Skill-tool call.
+The user types it; no Skill-tool call. Which tool:
 
 | Type | When |
 |---|---|
-| `/game-prototype` | A build or trial is next |
+| `/game-prototype` | A build or trial |
 | `/game-mechanic-critique` | Numbers or a test design |
-| `/game-playtest` | Player reports to interpret |
+| `/game-playtest` | Player reports |
 | `/game-release` | Wishlist, deadline, "am I ready", launch |
 | `/game-bible` | No bible, or something to record |
 
